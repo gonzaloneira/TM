@@ -31,7 +31,7 @@ p{
     border: 1px solid black;
     border-radius: 15px;
     box-sizing: border-box;
-    box-shadow: 10px 10px 10px  black;
+    box-shadow: 5px 5px 10px  black;
 }
 #celeste{
     width: 300px;
