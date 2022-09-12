@@ -1,0 +1,46 @@
+h2{
+   
+    color: rgb(45, 30, 250);
+}
+
+h1{
+    color: red;
+    background-color: aquamarine;
+    text-align: center;
+    font-family: Arial;
+}
+
+p{
+    color: rgb(62, 0, 177);
+}
+
+.destacados{
+    color: orange;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#rojo{
+    width: 300px;
+    height: 250px;
+    background-color: coral;
+    text-align: center;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    border: 5px solid black;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+#celeste{
+    width: 300px;
+    height: 250px;
+    background-color: lightblue;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 5px dashed red;
+    
+}
+
+/*regla de css donde h2 es el tipo de selector: etiqueta y adentro van las distintas propiedades cons us valores*/
+/* padding es los márgenes interiores y siempre hay que acompañarlo del box sizing para que no se agrande la caja */
