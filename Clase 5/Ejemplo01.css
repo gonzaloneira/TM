@@ -1,0 +1,40 @@
+.caja{
+    background-color: yellow;
+    width: 300px;
+    height: 300px;
+    margin: 100px;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: -5px 5px 10px black;
+    border-radius: 15px;
+    border: 10px solid wheat;
+
+}
+
+.caja2{
+    /* background-color: white; */
+    background: #e2e2e2;
+    background: linear-gradient(360deg,#e2e2e2 0%, #ffffff 80%);
+    width: 300px;
+    height: 300px;
+    margin: 100px;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: -5px 5px 10px black;
+    /* border-radius: 15px; */
+    border: 2px solid grey;
+    /* border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px; */
+    border-radius: 30px 0 30px;
+}
+
+.texto{
+
+    background-color: coral;
+    column-count: 5;
+    column-rule: 2px dotted #000000;   
+}
+.texto p{
+    margin: 0;
+    /* esto es porque sino el texto deja un lugar en blanco arriba de todo del div */
+}

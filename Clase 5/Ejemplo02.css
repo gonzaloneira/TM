@@ -1,0 +1,24 @@
+/* 
+font-family: 'Pacifico', cursive;
+font-family: 'Raleway', sans-serif;
+ */
+
+h2{
+color: red;
+font-family: 'Pacifico', cursive;
+font-weight: lighter;
+
+}
+
+h1{
+    color: rgb(72, 187, 49);
+    font-family: 'Pacifico', cursive;
+    font-size: 300% ;
+    font-weight: lighter;
+    
+    }
+
+p{
+    color: grey;
+    font-family: 'Raleway', sans-serif;
+}
