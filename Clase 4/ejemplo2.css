@@ -40,8 +40,7 @@ p{
     padding: 20px;
     box-sizing: border-box;
     border-right: 5px dashed red;
-    
-}
+ }
 
 /*regla de css donde h2 es el tipo de selector: etiqueta y adentro van las distintas propiedades cons us valores*/
 /* padding es los márgenes interiores y siempre hay que acompañarlo del box sizing para que no se agrande la caja */
