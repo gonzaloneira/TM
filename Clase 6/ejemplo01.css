@@ -1,0 +1,14 @@
+.contenedor{
+    background-color: grey;
+    display: flex;
+    /* flex es para que uno vaya al lado del otro */
+    /* display: inline-flex; */
+}
+
+.item{
+    background-color: aqua;
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    font-size: 25px;
+}

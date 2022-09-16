@@ -1,0 +1,12 @@
+.caja{
+background-color: aqua;
+width: 100%;
+height: 50px;
+position: fixed;
+top: 0;
+}
+
+.texto{
+background-color: yellow;
+margin-top: 55px;
+}

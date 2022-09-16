@@ -1,0 +1,29 @@
+.contenedor{
+    background-color: gray;
+    width: 60%;
+    margin: 0 auto;
+    /* margin: 0 (el cero indica arriba y abajo) auto (es para derecha e izquierda) es para centrar el div */
+    height: 600px;
+    /* padding-top: 10px; */
+    
+}
+.verde{
+    background-color: lightgreen;
+    width: 90%;
+    height: 150px;
+    margin: 0 auto 20px; /*arriba-lateral-abajo*/
+}
+
+.celeste{
+    background-color: lightblue;
+    width: 90%;
+    height: 150px;
+    margin: 0 auto 20px; /*arriba-lateral-abajo*/
+}
+
+.amarillo{
+    background-color: rgb(226, 226, 88);
+    width: 90%;
+    height: 150px;
+    margin: 0 auto 20px; /*arriba-lateral-abajo*/
+}

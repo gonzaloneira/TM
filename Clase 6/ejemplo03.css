@@ -1,0 +1,17 @@
+.contenedor{
+    background-color: grey;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
+    /* el wrap es para que los botones se vayan acomodando a la pantalla */
+
+    
+}
+
+.item{
+    background-color: aqua;
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    font-size: 25px;
+}
