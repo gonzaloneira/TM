@@ -1,0 +1,45 @@
+.recuadrocentral{
+    width: 800px;
+    display: inline-flex;
+    border: 2px solid black;
+    justify-content: space-between;
+ 
+
+}
+
+.rojo{
+    background-color: red;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.azul{
+    background-color: blue;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.verde{
+    background-color: green;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+
+
+.texto{
+    color: white;
+    
+}
