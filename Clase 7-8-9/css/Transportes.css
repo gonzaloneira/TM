@@ -6,6 +6,8 @@ body{
 
 header{
     background-color: rgb(46, 100, 162);
+    padding-top: 23px;
+    padding-bottom: 20px;
 }
 
 header h1{
@@ -14,11 +16,14 @@ header h1{
     font-weight: 300;
     display: inline-block;
     position: relative;
-    bottom: 30px;
+    bottom: 35px;
+    margin-bottom: 0;
 }
+
 
 nav{
     background-color: rgb(110, 169, 237);
+    margin-bottom: 20px;
 }
 
 nav ul{
@@ -31,4 +36,78 @@ nav ul{
 nav ul li{
     flex-grow: 1;
     
+}
+
+nav ul li a{
+    color: white;
+    text-decoration: none; /*saca el subrayado del texto*/
+    padding: 5px;
+    display: block; /*esto es para que interprete que es un bloque de fila y funcione el padding superior e inferior*/
+    text-align: center;
+}
+nav ul li a:hover{
+    background: rgba(0,0,0,0.3)
+}
+
+nav ul li a.activo{
+    background: rgba(0,0,0,0.3)
+}
+
+footer{
+    background: #ccc;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 20px;
+}
+
+.holder{
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+h2{
+    color: #2e64a1;
+    font-weight: 300;
+}
+
+.bienvenidos{
+    width: 75%;
+    padding-right: 16px;
+}
+
+.testimonios{
+    width: 25%;
+}
+
+.testimonio{
+    background-color: #ccc;
+    padding: 20px;
+}
+
+.columnas{
+    display: flex;
+}
+
+.testimonio .cita{
+    font-style: italic;
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+}
+
+.testimonio .autor{
+    font-size: 11px;
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.historia p{
+    font-size: 13px;
+}
+
+.persona{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 18%;
 }

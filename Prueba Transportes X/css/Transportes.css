@@ -1,0 +1,108 @@
+/* font-family: 'Open Sans', sans-serif;*/
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+header{
+    background-color: rgb(46, 100, 162);
+}
+
+header h1{
+    color: white;
+    font-style: italic;
+    font-weight: 300;
+    display: inline-block;
+    position: relative;
+    bottom: 30px;
+}
+
+nav{
+    background-color: rgb(110, 169, 237);
+}
+
+nav ul{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li{
+    flex-grow: 1;
+}
+
+main{
+    display: flex;
+    /* width: 960px; */
+    /* justify-content: center; */
+    margin-top: 25px;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: grey; */
+}
+
+.ImagenCentral{
+    display: block;
+    align-self: auto;
+}
+
+.bienvenidosytestimonio{
+    /* background-color: yellow; */
+    width: 960px;
+    display: flex;
+}
+
+.bienvenidos{
+    width: 700px;
+    height: 100px;
+    /* background-color: red; */
+    padding-right: 10px;
+    
+    /* display: flex; */
+    /* align-items: flex-start; */
+
+}
+.bienvenidos h2{
+    margin-top: 25px;
+    color: rgb(46, 100, 162);
+    font-weight: lighter;
+}
+
+
+.testimonios{
+    width: 260px;
+    height: 100px;
+    /* background-color: blue; */
+    /* align-items: flex-end; */
+
+}
+
+.testimonios h2{
+    margin-top: 25px;
+    color: rgb(46, 100, 162);
+    font-weight: lighter;
+}
+
+.subtestimonios{
+    background-color: lightgrey;
+    width: 200px;
+    height: 80px;
+    padding: 10px;
+}
+
+.subtestimonios h3{
+    margin: 0;
+    font-style: italic;
+}
+
+.subtestimonios p{
+    font-size: 60%;
+    text-align: center;
+}
+
+footer{
+    background-color: lightgray;
+    text-align: center;
+}
+
