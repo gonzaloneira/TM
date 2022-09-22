@@ -1,0 +1,146 @@
+/* font-family: 'Reem Kufi Fun', sans-serif; */
+
+body {
+    font-family: 'Reem Kufi Fun', sans-serif;
+
+}
+
+.holder {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+header {
+    /* background-color: rgb(169, 236, 253); */
+    background-color: rgb(0, 153, 82);
+    padding-top: 5px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+header span {
+    color: white;
+    font-size: 50px;
+    display: inline-block;
+    position: relative;
+    bottom: 3px;
+}
+
+nav {
+    background-color: rgb(79, 221, 121);
+    height: 38px;
+    position: fixed;
+    width: 100%;
+    top: 87px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    flex-grow: 1;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    /*saca el subrayado del texto*/
+    padding: 10px;
+    display: block;
+    /*esto es para que interprete que es un bloque de fila y funcione el padding superior e inferior*/
+    text-align: center;
+    transition: all 0.1s;
+}
+
+/* INDEX */
+nav ul li a.index {
+    background: #279e15;
+}
+nav ul li a.index:hover {
+    background: #2fd615;
+    padding: 16px;
+    border-radius: 0 0 15px 15px; 
+}
+nav ul li a.indexactivo {
+    /* background: #279e15; */
+    background: #2fd615;
+    padding: 16px;
+    border-radius: 0 0 15px 15px;
+}
+nav ul li a.indexactivo:hover {
+    background: #2fd615;
+    padding: 16px;
+    border-radius: 0 0 15px 15px;
+}
+
+
+/* NOSOTROS */
+nav ul li a.nosotros{    
+    background: #07a0a0;
+}
+nav ul li a.nosotros:hover {
+    background: #08BDBD;
+    padding: 16px;  
+    border-radius: 0 0 15px 15px;   
+}
+nav ul li a.nosotrosactivo{    
+    background: #08BDBD;
+    padding: 16px; 
+    border-radius: 0 0 15px 15px;
+}
+nav ul li a.nosotrosactivo:hover {
+    background: #08BDBD;
+    padding: 16px;   
+    border-radius: 0 0 15px 15px; 
+}
+
+/* STAFF */
+nav ul li a.staff{
+    background: #c41633;
+}
+nav ul li a.staff:hover {
+    background: #F21B3F;
+    padding: 16px;
+    border-radius: 0 0 15px 15px; 
+}
+nav ul li a.staffactivo{
+    background: #F21B3F;
+    padding: 16px;
+    border-radius: 0 0 15px 15px;
+}
+nav ul li a.staffactivo:hover {
+    background: #F21B3F;
+    padding: 16px;
+    border-radius: 0 0 15px 15px;
+}
+
+
+/* CONTACTO */
+nav ul li a.contacto{
+    background: #cc7a10;
+}
+nav ul li a.contacto:hover {
+    background: #FF9914;
+    padding: 16px;
+    border-radius: 0 0 15px 15px; 
+}
+nav ul li a.contactoactivo{
+    background: #FF9914;
+    padding: 16px;
+    border-radius: 0 0 15px 15px;
+}
+nav ul li a.contactoactivo:hover {
+    background: #FF9914;
+    padding: 16px;
+    border-radius: 0 0 15px 15px;
+}
+
+main{
+    padding-top: 130px;
+}
