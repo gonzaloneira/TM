@@ -65,21 +65,24 @@ nav ul li a.index {
 
 nav ul li a.index:hover {
     background: #2fd615;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.indexactivo {
     /* background: #279e15; */
     background: #2fd615;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.indexactivo:hover {
     background: #2fd615;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 
@@ -90,20 +93,23 @@ nav ul li a.nosotros {
 
 nav ul li a.nosotros:hover {
     background: #08BDBD;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.nosotrosactivo {
     background: #08BDBD;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.nosotrosactivo:hover {
     background: #08BDBD;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 /* STAFF */
@@ -113,20 +119,23 @@ nav ul li a.staff {
 
 nav ul li a.staff:hover {
     background: #F21B3F;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.staffactivo {
     background: #F21B3F;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.staffactivo:hover {
     background: #F21B3F;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 
@@ -137,22 +146,31 @@ nav ul li a.contacto {
 
 nav ul li a.contacto:hover {
     background: #FF9914;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.contactoactivo {
     background: #FF9914;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 nav ul li a.contactoactivo:hover {
     background: #FF9914;
-    padding: 16px;
+    padding: 18px;
     border-radius: 0 0 15px 15px;
+    font-size: 20px;
 }
 
 main {
     padding-top: 130px;
+}
+
+main img{
+    max-width: 1080px;
+    max-height: 960;
+    /* padding-bottom: 500px; */
 }

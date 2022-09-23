@@ -1,16 +1,16 @@
 /* font-family: 'Open Sans', sans-serif;*/
 
-body{
+body {
     font-family: 'Open Sans', sans-serif;
 }
 
-header{
+header {
     background-color: rgb(46, 100, 162);
     padding-top: 23px;
     padding-bottom: 20px;
 }
 
-header h1{
+header h1 {
     color: white;
     font-style: italic;
     font-weight: 300;
@@ -21,93 +21,203 @@ header h1{
 }
 
 
-nav{
+nav {
     background-color: rgb(110, 169, 237);
     margin-bottom: 20px;
 }
 
-nav ul{
+nav ul {
     margin: 0;
     list-style: none;
     padding: 0;
     display: flex;
 }
 
-nav ul li{
+nav ul li {
     flex-grow: 1;
-    
+
 }
 
-nav ul li a{
+nav ul li a {
     color: white;
-    text-decoration: none; /*saca el subrayado del texto*/
+    text-decoration: none;
+    /*saca el subrayado del texto*/
     padding: 5px;
-    display: block; /*esto es para que interprete que es un bloque de fila y funcione el padding superior e inferior*/
+    display: block;
+    /*esto es para que interprete que es un bloque de fila y funcione el padding superior e inferior*/
     text-align: center;
 }
-nav ul li a:hover{
-    background: rgba(0,0,0,0.3)
+
+nav ul li a:hover {
+    background: rgba(0, 0, 0, 0.3)
 }
 
-nav ul li a.activo{
-    background: rgba(0,0,0,0.3)
+nav ul li a.activo {
+    background: rgba(0, 0, 0, 0.3)
 }
 
-footer{
+footer {
     background: #ccc;
     text-align: center;
     padding: 40px 0;
     margin-top: 20px;
 }
 
-.holder{
+.holder {
     max-width: 960px;
     margin: 0 auto;
 }
 
-h2{
+h2 {
     color: #2e64a1;
     font-weight: 300;
 }
 
-.bienvenidos{
+.bienvenidos {
     width: 75%;
     padding-right: 16px;
 }
 
-.testimonios{
+.testimonios {
     width: 25%;
 }
 
-.testimonio{
+.testimonio {
     background-color: #ccc;
     padding: 20px;
 }
 
-.columnas{
+.columnas {
     display: flex;
 }
 
-.testimonio .cita{
+.testimonio .cita {
     font-style: italic;
     font-size: 24px;
     font-weight: bold;
     display: block;
 }
 
-.testimonio .autor{
+.testimonio .autor {
     font-size: 11px;
     display: block;
     text-align: center;
     margin-top: 16px;
 }
 
-.historia p{
+.historia p {
     font-size: 13px;
 }
 
-.persona{
+.personas {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.persona {
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 18%;
+    text-align: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.persona img {
+    border-radius: 50%;
+    max-width: 65%;
+    box-shadow: 0 0 5px black;
+    margin-top: 13px;
+    margin: 13px 0 16px;
+}
+
+.persona h5,
+.persona h6 {
+    color: #2e64a1;
+    font-weight: normal;
+    margin: 0;
+}
+
+.persona h5 {
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.persona h6 {
+    font-style: italic;
+}
+
+.persona p {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.servicio {
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 16px 0;
+    padding: 16px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.servicio .info h4 {
+    color: #2e64a1;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: 1px solid #2e64a1;
+    padding-bottom: 8px;
+}
+
+.servicio .info p {
+    font-size: 12px;
+}
+
+.servicio img {
+    border-radius: 15px;
+    max-width: 225;
+    display: block;
+}
+
+.servicio:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* esto es para que ponga una imagen a la izquierda, otra a la derecha y así*/
+
+.contacto {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.contacto section {
+    width: 100%;
+}
+
+.datos p {
+    font-size: 14px;
+}
+
+datos ul li {
+    font-size: 13px;
+}
+
+.formulario p {
+    display: flex;
+}
+
+.formulario p label {
+    min-width: 80px;
+}
+
+.formulario p input,
+.formulario p textarea {
+    background-color: rgb(228, 226, 226);
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
 }
