@@ -261,6 +261,7 @@ main .nubes .nube i {
 
 .contactos section {
     width: 100%;
+    padding-right: 120px;
 }
 
 .datos p {
@@ -283,6 +284,10 @@ main .nubes .nube i {
     min-width: 80px;
 }
 
+.formulario p input{
+    height: 20px;
+}
+
 .formulario p input,
 .formulario p textarea {
     background-color: #caffe6;
@@ -290,12 +295,13 @@ main .nubes .nube i {
     border-radius: 20px;
     border: 1px solid #279e15;
     font-size: 14px;
-    padding: 5px;
+    padding: 5px 15px;
+    margin: 1px;
 }
 
 .formulario textarea {
     resize: none;
-    height: 150px;
+    height: 120px;
 }
 
 .formulario input[type="submit"]{
@@ -307,6 +313,7 @@ main .nubes .nube i {
     border-radius: 20px;
     transition: all 0.2s;
     cursor: pointer;
+    height: 30px;
 }
 .formulario input[type="submit"]:hover{
     background-color: #2fd615;
