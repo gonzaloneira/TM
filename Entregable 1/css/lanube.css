@@ -1,4 +1,5 @@
-/* font-family: 'Reem Kufi Fun', sans-serif; */
+/* font-family: 'Nunito', sans-serif;
+font-family: 'Reem Kufi Fun', sans-serif; */
 
 body {
     font-family: 'Reem Kufi Fun', sans-serif;
@@ -12,13 +13,22 @@ body {
 
 header {
     /* background-color: rgb(169, 236, 253); */
-    background-color: rgb(0, 153, 82);
+    background-color: #009952;
+    /* background-color: #279e15; */
     padding-top: 5px;
     padding-bottom: 0px;
     padding-left: 20px;
     position: fixed;
     top: 0;
     width: 100%;
+}
+
+footer {
+    background-color: #009952;
+    color: white;
+    padding: 15px;
+    text-align: right;
+    margin-top: 30px;
 }
 
 header span {
@@ -37,7 +47,7 @@ nav {
     top: 87px;
 }
 
-ul {
+nav ul {
     list-style: none;
     padding: 0;
     display: flex;
@@ -169,8 +179,202 @@ main {
     padding-top: 130px;
 }
 
-main img{
+main h2 {
+    color: #009952;
+}
+
+.imagencentral {
     max-width: 1080px;
     max-height: 960;
     /* padding-bottom: 500px; */
+}
+
+main .nubes {
+    display: block;
+    text-align: center;
+    display: flex;
+    margin-top: 30px;
+    /* position: relative; */
+}
+
+main .nubes .nube {
+    max-width: 360px;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 70px 50px;
+    color: white;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.amarilla {
+    background-color: #ffc107;
+}
+
+.roja {
+    background-color: #F21B3F;
+}
+
+.verde {
+    background-color: #2fd615;
+}
+
+main .nubes .nube:hover {
+    transform: scale(110%);
+}
+
+main .nubes .nube i {
+    font-size: 70px;
+    padding-bottom: 30px;
+}
+
+.terceraparteindex {
+    margin-top: 30px;
+    justify-content: space-between;
+
+}
+
+.terceraparteindex div {
+    display: flex;
+    gap: 25px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+}
+
+.terceraparteindex img {
+    max-width: 400px;
+}
+
+.fotosninos:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.contactos {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.contactos section {
+    width: 100%;
+}
+
+.datos p {
+    font-size: 14px;
+}
+
+.datos ul li {
+    font-size: 13px;
+    text-decoration: none;
+    list-style: none;
+    line-height: 30px;
+}
+
+.datos ul li a {
+    text-decoration: none;
+}
+
+.formulario p {
+    /* display: flex; */
+}
+
+.formulario p label {
+    min-width: 80px;
+}
+
+.formulario p input,
+.formulario p textarea {
+    background-color: #caffe6;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #279e15;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.formulario textarea {
+    resize: none;
+    height: 150px;
+}
+
+.formulario input[type="submit"]{
+    background-color: #009952;
+    box-shadow: 0 0 10px grey;
+    color: white;
+    font-size: 16px;
+    width: auto;
+    border-radius: 10px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.formulario input[type="submit"]:hover{
+    background-color: #2fd615;
+}
+
+.staffsection{
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+
+.staffsection img {
+    border-radius: 50%;
+    max-width: 70%;
+    max-height: 70%;
+}
+
+.personas {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.staffsection p {
+    font-family: 'Nunito', sans-serif;
+    font-style: italic;
+    font-size: 15px;
+    margin: 0;
+
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.staffsection .personas .persona {
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    /* border: 5px dotted #ffc107; */
+}
+
+#cara1{
+    border: 5px solid #ffc107;
+}
+
+#cara2{
+    border: 5px solid #F21B3F;
+}
+
+#cara3 {
+    border: 5px solid #2fd615;
+}
+
+#cara4 {
+    border: 5px solid #08BDBD;
+}
+
+.persona h3 {
+    margin: 5px 0;
+
+}
+
+.persona h4 {
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
+.paginaenconstruccion{
+    font-size: 30px;
+    padding: 50px;
 }

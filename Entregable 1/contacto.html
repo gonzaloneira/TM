@@ -11,9 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/normalize.css">
-
     <link rel="stylesheet" href="css/lanube.css">
 </head>
 
@@ -26,21 +27,63 @@
 </header>
 
 <nav>
-<ul class="holder">
-    <li><a class="index" href="index.html">HOME</a></li>
-    <li><a class="nosotros" href="nosotros.html">NOSOTROS</a></li>
-    <li><a class="staff" href="staff.html">STAFF</a></li>
-    <li><a class="contactoactivo" href="contacto.html">CONTACTO</a></li>
-</ul>
+    <ul class="holder">
+        <li><a class="index" href="index.html">HOME</a></li>
+        <li><a class="nosotros" href="nosotros.html">NOSOTROS</a></li>
+        <li><a class="staff" href="staff.html">STAFF</a></li>
+        <li><a class="contactoactivo" href="contacto.html">CONTACTO</a></li>
+    </ul>
 </nav>
 <main class="holder">
-    <div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quae debitis quibusdam repellat, quia fugit blanditiis iure eveniet accusamus, sed sunt tempore natus ad nulla at nesciunt distinctio minus totam?</p>
-    </div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.372801595564!2d-60.64474408520693!3d-32.941165478939915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab3cfbcd930b%3A0xc0706038b2cdbee8!2sJARD%C3%8DN%20DE%20INFANTES%20LA%20NUBE!5e0!3m2!1ses-419!2sar!4v1663880405512!5m2!1ses-419!2sar" width="1080" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <section class="contactos">
+        <section>
+            <h2>Contacto Rápido</h2>
+            <form action="" class="formulario">
+                <p>
+                    <label for="">Nombre</label>
+                    <input type="text" required>
+                </p>
+                <p>
+                    <label for="">Email</label>
+                    <input type="emails" required>
+                </p>
+                <p>
+                    <label for="">Teléfono</label>
+                    <input type="tel" placeholder="3410000000" pattern="[0-9]{10}" required>
+                </p>
+                <p>
+                    <label for="">Mensaje</label>
+                    <textarea required></textarea>
+                </p>
+                <p>
+                    <input type="submit" value="Enviar">
+                </p>
+            </form>
+        </section>
+
+        <section class="datos">
+            <h2>Otras vías de comunicación</h2>
+          
+            <ul>
+                <li><i class="fa-solid fa-hashtag"></i><a href="#">Instagram</a></li>
+                <li><i class="fa-solid fa-laptop"></i><a href="#">Facebook</a></li>
+                <li><i class="fa-solid fa-phone"></i><a href="#">Teléfono</a></li>
+                <li><i class="fa-solid fa-envelope"></i><a href="#">Email</a></li>
+                <li><i class="fa-solid fa-location-dot"></i><a href="#">Dirección</a></li>
+            </ul>
+        </section>
+    </section>
+
+    <section class="mapa">
+        <h2>Mapa</h2>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.372801595564!2d-60.64474408520693!3d-32.941165478939915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab3cfbcd930b%3A0xc0706038b2cdbee8!2sJARD%C3%8DN%20DE%20INFANTES%20LA%20NUBE!5e0!3m2!1ses-419!2sar!4v1663880405512!5m2!1ses-419!2sar"
+            width="1080" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
 
 </main>
 
 <footer>
-
+    <p>Creado por Gonzalo Neira</p>
 </footer>
