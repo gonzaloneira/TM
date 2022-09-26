@@ -268,18 +268,15 @@ main .nubes .nube i {
 }
 
 .datos ul li {
-    font-size: 13px;
+    font-size: 18px;
     text-decoration: none;
     list-style: none;
-    line-height: 30px;
+    line-height: 50px;
+
 }
 
 .datos ul li a {
     text-decoration: none;
-}
-
-.formulario p {
-    /* display: flex; */
 }
 
 .formulario p label {
@@ -313,6 +310,12 @@ main .nubes .nube i {
 }
 .formulario input[type="submit"]:hover{
     background-color: #2fd615;
+}
+
+.datos .fa-solid{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #FF9914;
 }
 
 .fa-solid{
