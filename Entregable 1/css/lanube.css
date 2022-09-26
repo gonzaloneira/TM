@@ -270,14 +270,18 @@ main .nubes .nube i {
 
 .datos ul li {
     font-size: 18px;
-    text-decoration: none;
     list-style: none;
     line-height: 50px;
+    transition: all 0.3s;
+}
 
+.datos ul li:hover{
+    font-size: 22px;
 }
 
 .datos ul li a {
     text-decoration: none;
+    color: black;
 }
 
 .formulario p label {
@@ -290,10 +294,10 @@ main .nubes .nube i {
 
 .formulario p input,
 .formulario p textarea {
-    background-color: #caffe6;
+    background-color: #eeeeee;
     width: 100%;
     border-radius: 20px;
-    border: 1px solid #279e15;
+    border: 1px solid #9c9c9c;
     font-size: 14px;
     padding: 5px 15px;
     margin: 1px;
@@ -306,17 +310,18 @@ main .nubes .nube i {
 
 .formulario input[type="submit"]{
     background-color: #009952;
-    box-shadow: 0 0 10px grey;
+    border-color: #009952;
     color: white;
     font-size: 16px;
-    width: 100px;
+    width: 120px;
     border-radius: 20px;
     transition: all 0.2s;
     cursor: pointer;
-    height: 30px;
+    height: 40px;
 }
 .formulario input[type="submit"]:hover{
     background-color: #2fd615;
+    border-color: #2fd615;
 }
 
 .datos .fa-solid{
