@@ -246,10 +246,28 @@ main .nubes .nube i {
 
 .terceraparteindex img {
     max-width: 400px;
+    border-radius: 20px;
+}
+
+.fotosninos{
+    margin-bottom: 20px;|
 }
 
 .fotosninos:nth-child(even) {
     flex-direction: row-reverse;
+}
+
+.actividades{
+    flex-wrap: wrap;
+    max-width: 50%;
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240);
+    padding: 15px;
+}
+
+.actividades h2{
+    margin: 0;
+    padding: 0;
 }
 
 .contactos {
