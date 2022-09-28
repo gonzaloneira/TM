@@ -231,11 +231,11 @@ h2 {
     height: 150px;
 }
 
-.formulario p:nth-child(4){
+.formulario p:nth-child(4) {
     align-items: flex-start;
 }
 
-.formulario input[type="submit"]{
+.formulario input[type="submit"] {
     background-color: #6da9ed;
     box-shadow: 0 0 10px grey;
     color: white;
@@ -248,6 +248,25 @@ h2 {
     cursor: pointer;
 }
 
-.formulario input[type="submit"]:hover{
+.formulario input[type="submit"]:hover {
     background-color: #2e64a1;
 }
+
+.fotos {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.fotos .foto img {
+    padding: 10px;
+    border: 1px solid grey;
+    width: 150px;
+    height: 130px;
+    gap: 7px;
+}
+
+.foto{
+    margin-bottom: 7px;
+}
+

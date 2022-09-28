@@ -69,11 +69,10 @@ nav ul li a {
         display: flex;
         justify-content: space-evenly;
         padding: 0px;
+        margin: 0;
     } /*todo esto lo agregué yo*/
 
-    nav ul li{
-        padding: 0;
-    }/*todo esto lo agregué yo*/
+
 
     main {
         width: 100%;
