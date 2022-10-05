@@ -263,9 +263,9 @@ h2 {
     margin-bottom: 7px;
     width: 170px;
     height: 150px;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .fotos .fotoroja {
@@ -273,9 +273,9 @@ h2 {
     margin-bottom: 7px;
     width: 170px;
     height: 150px;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .fotos .foto img {
