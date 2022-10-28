@@ -1,0 +1,31 @@
+#caja1{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+}
+#caja2{
+    background-color: green;
+    height: 100px;
+    width: 100px;
+}
+#caja3{
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+}
+
+.fondo{
+    display: flex;
+}
+
+/* .rojo{
+    background-color: red;
+}
+
+.verde{
+    background-color: green;
+} */
+
+/* .azul{
+    background-color: blue;
+} */
