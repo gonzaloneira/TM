@@ -18,11 +18,3 @@ Antes de regenerar, reemplazá `[mail o WhatsApp de contacto]` en `generar-pdf.j
 ```
 node fuente/generar-pdf.js "$PWD/fuente" "$PWD" datx-una-pagina
 ```
-
-## Versión de una página, verde y ámbar
-
-- `../datx-una-pagina-verde-ambar.pdf` / `.html` (misma base, con un bloque de estilos al final que combina los verdes con el ámbar)
-
-```
-node fuente/generar-pdf.js "$PWD/fuente" "$PWD" datx-una-pagina-verde-ambar
-```
