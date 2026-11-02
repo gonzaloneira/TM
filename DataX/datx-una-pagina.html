@@ -64,11 +64,11 @@ p,ul{margin:0}
 
 /* Pasos */
 .pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ambar-borde);background:var(--ambar-bg);border-radius:10px;overflow:hidden}
-.paso{padding:2.8mm 3.2mm;display:grid;grid-template-columns:auto 1fr;gap:0 2.2mm;align-items:start}
+.paso{position:relative;padding:2.8mm 3.2mm 2.8mm 11.6mm}
 .paso+.paso{border-left:1px solid var(--ambar-borde)}
-.paso i{grid-row:span 2;display:grid;place-items:center;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--ambar);color:var(--ambar-texto);font:800 9pt var(--font-display);font-style:normal}
-.paso b{font:750 9pt var(--font-display)}
-.paso p{grid-column:2;font-size:7.9pt;color:#5b4632}
+.paso i{position:absolute;left:3.2mm;top:2.8mm;display:grid;place-items:center;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--ambar);color:var(--ambar-texto);font:800 9pt var(--font-display);font-style:normal}
+.paso b{display:block;font:750 9pt var(--font-display);line-height:1.25;padding-top:.6mm}
+.paso p{margin-top:.5mm;font-size:7.9pt;color:#5b4632}
 
 /* Funcionalidades */
 .funciones{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm}
@@ -154,7 +154,7 @@ p,ul{margin:0}
     <div>
       <div class="rotulo"><span>02</span><h2>Cómo funciona</h2></div>
       <div class="pasos">
-        <div class="paso"><i>1</i><b>Conectamos</b><p>Acceso de solo lectura a tus bases y APIs.</p></div>
+        <div class="paso"><i>1</i><b>Conectamos</b><p>Acceso de solo lectura a tus bases, APIs y planillas Excel.</p></div>
         <div class="paso"><i>2</i><b>La IA aprende</b><p>Documenta tablas, métricas y definiciones.</p></div>
         <div class="paso"><i>3</i><b>Pedís el bloque</b><p>En tus palabras; la IA arma un borrador.</p></div>
         <div class="paso"><i>4</i><b>Revisás y publicás</b><p>Un responsable lo aprueba y lo comparte.</p></div>
