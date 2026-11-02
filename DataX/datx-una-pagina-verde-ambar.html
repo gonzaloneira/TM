@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>datx · Una página (verde y ámbar)</title>
+<style>
+/* Versión de una sola página. Misma marca que la presentación larga, con más protagonismo del ámbar. */
+:root{
+  --brand-dark:#082121; --brand-surface:#0f3130; --brand-line:#1d4644;
+  --on-brand:#f1f7f6; --on-brand-2:#a9c3c1; --logo-x:#2ee0a6;
+  --ambar:#f59e0b; --ambar-osc:#b45309; --ambar-bg:#fdf1dc; --ambar-borde:#f6d39b; --ambar-texto:#1c1206;
+  --text:#0f172a; --text-2:#475569; --text-3:#64748b;
+  --border:#e2e8f0; --surface:#f8fafc;
+  --accent:#0f766e; --accent-bg:#e6f6f3;
+  --font:"Segoe UI Variable Text","Segoe UI",Inter,system-ui,sans-serif;
+  --font-display:"Segoe UI Variable Display","Segoe UI","Inter Display",Inter,system-ui,sans-serif;
+  --mono:"Cascadia Code",Consolas,"JetBrains Mono",ui-monospace,monospace;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#d9e1e0}
+body{font:400 8.6pt/1.42 var(--font);color:var(--text);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{margin:0;font-family:var(--font-display);text-wrap:balance}
+p,ul{margin:0}
+.i{width:15px;height:15px;flex:none}
+.pagina{position:relative;width:210mm;height:297mm;overflow:hidden;background:#fff;margin:0 auto;display:flex;flex-direction:column}
+@media screen{.pagina{margin:10mm auto;box-shadow:0 10px 40px rgba(0,0,0,.18)}}
+
+/* Encabezado oscuro */
+.hero{flex:none;position:relative;overflow:hidden;background:var(--brand-dark);color:var(--on-brand);padding:7mm 13mm 6mm}
+.hero::before{content:"";position:absolute;width:150mm;height:150mm;right:-55mm;top:-75mm;border-radius:50%;background:radial-gradient(closest-side,rgba(245,158,11,.30),transparent)}
+.hero::after{content:"";position:absolute;width:120mm;height:120mm;left:-50mm;bottom:-80mm;border-radius:50%;background:radial-gradient(closest-side,rgba(46,224,166,.20),transparent)}
+.hero>*{position:relative}
+.hero__top{display:flex;align-items:center;justify-content:space-between}
+.hero .logo{height:30px;width:auto}
+.sello{font:700 7.5pt var(--mono);letter-spacing:.08em;color:var(--ambar-texto);background:var(--ambar);padding:1.3mm 3mm;border-radius:999px}
+.hero__cuerpo{display:grid;grid-template-columns:1.25fr 1fr;gap:8mm;align-items:end;margin-top:5mm}
+.hero h1{font-size:23pt;font-weight:800;letter-spacing:-.035em;line-height:1.04}
+.hero h1 em{font-style:normal;color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#34d399,#2ee0a6 40%,#fcd34d)}
+.hero__bajada{margin-top:3mm;font-size:10pt;color:var(--on-brand-2)}
+.hero__bajada b{color:var(--on-brand);font-weight:600}
+.cifras{display:grid;gap:1.5mm}
+.cifra{display:flex;align-items:center;gap:3mm;padding:1.5mm 3.5mm;border:1px solid var(--brand-line);border-left:0;background:rgba(255,255,255,.04);border-radius:9px;position:relative;overflow:hidden}
+.cifra::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ambar)}
+.cifra b{font:800 12pt var(--font-display);color:var(--ambar);min-width:30mm;white-space:nowrap}
+.cifra span{font-size:8.3pt;color:var(--on-brand-2)}
+
+/* Contenido */
+.cuerpo{flex:1;padding:6mm 13mm 6mm;display:flex;flex-direction:column;justify-content:space-between;gap:3.5mm}
+.rotulo{display:flex;align-items:center;gap:2.5mm;margin-bottom:2mm}
+.rotulo h2{font-size:12pt;font-weight:780;letter-spacing:-.015em}
+.rotulo span{font:700 7pt var(--mono);letter-spacing:.08em;color:var(--ambar-texto);background:var(--ambar);padding:.6mm 2mm;border-radius:4px}
+.rotulo::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--ambar),transparent)}
+
+/* Bloques */
+.bloques{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+.bloque{border:1px solid var(--border);border-top:3px solid var(--ambar);border-radius:10px;padding:3mm 3.5mm;background:#fff;display:flex;flex-direction:column;gap:1.5mm}
+.bloque__cab{display:flex;align-items:center;gap:2mm}
+.icono{display:grid;place-items:center;width:7.5mm;height:7.5mm;border-radius:7px;background:var(--ambar-bg);color:var(--ambar-osc);flex:none}
+.bloque h3{font-size:9.8pt;line-height:1.2}
+.bloque p{color:var(--text-2)}
+.bloque .ej{font-size:7.8pt;color:var(--text-3);border-top:1px dashed var(--border);padding-top:1.5mm;margin-top:auto}
+.bloque .ej b{color:var(--ambar-osc);font-weight:700}
+
+/* Pasos */
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ambar-borde);background:var(--ambar-bg);border-radius:10px;overflow:hidden}
+.paso{position:relative;padding:2.8mm 3.2mm 2.8mm 11.6mm}
+.paso+.paso{border-left:1px solid var(--ambar-borde)}
+.paso i{position:absolute;left:3.2mm;top:2.8mm;display:grid;place-items:center;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--ambar);color:var(--ambar-texto);font:800 9pt var(--font-display);font-style:normal}
+.paso b{display:block;font:750 9pt var(--font-display);line-height:1.25;padding-top:.6mm}
+.paso p{margin-top:.5mm;font-size:7.9pt;color:#5b4632}
+
+/* Funcionalidades */
+.funciones{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm}
+.funcion{border:1px solid var(--border);border-radius:10px;padding:2.8mm 3.2mm;background:var(--surface)}
+.funcion h3{display:flex;align-items:center;gap:2mm;font-size:9.3pt;margin-bottom:1.5mm}
+.funcion h3 .i{color:var(--ambar-osc)}
+.funcion ul{list-style:none;padding:0;display:grid;gap:.6mm}
+.funcion li{padding-left:12px;position:relative;color:var(--text-2);font-size:8pt;line-height:1.35}
+.funcion li::before{content:"";position:absolute;left:0;top:4px;width:6px;height:6px;border-radius:50%;background:var(--ambar)}
+.funcion li b{color:var(--text);font-weight:650}
+
+/* Seguridad */
+.seguridad{background:var(--brand-dark);color:var(--on-brand);border-radius:12px;padding:3mm 4mm;display:grid;grid-template-columns:34mm 1fr;gap:4mm;align-items:center}
+.seguridad h2{font-size:12pt;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.seguridad h2 em{font-style:normal;color:var(--ambar)}
+.seguridad>div>p{margin-top:1.5mm;font-size:7.6pt;color:var(--on-brand-2)}
+.controles{display:grid;grid-template-columns:repeat(3,1fr);gap:2mm 4mm}
+.control{display:flex;gap:2mm}
+.control .i{color:var(--ambar);margin-top:.3mm}
+.control b{display:block;font-size:8.3pt;color:var(--on-brand)}
+.control span{font-size:7.5pt;color:var(--on-brand-2);line-height:1.3;display:block}
+
+/* Cierre */
+.cierre{flex:none;margin-top:auto;background:var(--ambar);color:var(--ambar-texto);padding:4.5mm 13mm;display:flex;align-items:center;justify-content:space-between;gap:6mm}
+.cierre h2{font-size:14pt;font-weight:800;letter-spacing:-.025em}
+.cierre p{font-size:8.6pt;margin-top:.8mm}
+.cierre .contacto{flex:none;background:var(--brand-dark);color:var(--on-brand);border-radius:10px;padding:2.8mm 5mm;text-align:center}
+.cierre .contacto b{display:block;font-size:9.5pt}
+.cierre .contacto span{font:8pt var(--mono);color:var(--on-brand-2)}
+.fuentes{display:flex;flex-wrap:wrap;align-items:center;gap:1.6mm;margin-top:-1mm}
+.fuentes>span:first-child{font:700 7pt var(--mono);letter-spacing:.06em;color:var(--text-3);text-transform:uppercase;margin-right:1mm}
+.fuente{padding:.8mm 2.6mm;border:1px solid var(--ambar-borde);background:#fff;border-radius:999px;font-size:7.6pt;font-weight:600}
+
+/* ===== Variante verde + ámbar: el verde de la marca se alterna y se funde con el ámbar ===== */
+:root{--verde:#0f766e;--verde-medio:#13836C;--verde-bg:#e3f5f1;--verde-borde:#b4e2d8;--degradado:linear-gradient(90deg,#20d49a,#2ee0a6 35%,#f59e0b)}
+.sello{background:var(--degradado);color:#062018}
+.hero::before{background:radial-gradient(closest-side,rgba(245,158,11,.24),transparent)}
+.hero::after{background:radial-gradient(closest-side,rgba(46,224,166,.28),transparent)}
+.cifra::before{background:linear-gradient(180deg,#2ee0a6,#f59e0b)}
+.cifra:nth-child(1) b{color:var(--logo-x)}
+.cifra:nth-child(2) b{color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#2ee0a6,#fcd34d)}
+.cifra:nth-child(3) b{color:var(--ambar)}
+
+.rotulo span{background:var(--verde);color:#fff}
+.rotulo::after{background:linear-gradient(90deg,var(--verde),var(--ambar) 55%,transparent)}
+
+.bloque:nth-child(1){border-top-color:var(--verde-medio)}
+.bloque:nth-child(1) .icono{background:var(--verde-bg);color:var(--verde)}
+.bloque:nth-child(1) .ej b{color:var(--verde)}
+.bloque:nth-child(3){border-top:0;position:relative;overflow:hidden;padding-top:calc(3mm + 3px)}
+.bloque:nth-child(3)::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--verde-medio),var(--ambar))}
+.bloque:nth-child(3) .icono{background:linear-gradient(135deg,var(--verde-bg),var(--ambar-bg));color:var(--verde)}
+
+.pasos{background:linear-gradient(90deg,var(--verde-bg),#f4f6e6 50%,var(--ambar-bg));border-color:var(--verde-borde)}
+.paso+.paso{border-left-color:rgba(15,118,110,.18)}
+.paso p{color:var(--text-2)}
+.paso:nth-child(1) i{background:var(--verde-medio);color:#fff}
+.paso:nth-child(2) i{background:#2ec4a0;color:#062018}
+.paso:nth-child(3) i{background:#f2b632;color:var(--ambar-texto)}
+.paso:nth-child(4) i{background:var(--ambar);color:var(--ambar-texto)}
+
+.funcion h3 .i{color:var(--verde)}
+.funcion:nth-child(even) h3 .i{color:var(--ambar-osc)}
+.funcion:nth-child(even) li::before{background:var(--verde-medio)}
+.funcion{border-top:2px solid var(--verde-borde)}
+.funcion:nth-child(even){border-top-color:var(--ambar-borde)}
+
+.control:nth-child(odd) .i{color:var(--logo-x)}
+.seguridad h2 em{color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#2ee0a6,#fcd34d)}
+
+.cierre{background:linear-gradient(90deg,var(--ambar) 0%,#f4b53b 45%,#2ee0a6 100%)}
+.cierre .contacto b{color:var(--logo-x)}
+</style>
+</head>
+<body>
+<section class="pagina">
+
+  <header class="hero">
+    <div class="hero__top"><svg class="logo" role="img" aria-label="datx" viewBox="44 37 456 165" aria-hidden="true">
+        <path d="M117.66 41L147.14 41L147.14 195L117.88 195L117.88 190.38Q102.48 197.64 91.26 197.64L91.26 197.64Q67.28 197.64 57.82 183.78Q48.36 169.92 48.36 139.89Q48.36 109.86 59.69 96.11Q71.02 82.36 93.90 82.36L93.90 82.36Q100.94 82.36 113.48 84.56L113.48 84.56L117.66 85.44L117.66 41ZM114.58 168.60L114.58 168.60L117.66 167.94L117.66 110.08Q105.56 107.88 96.10 107.88L96.10 107.88Q78.28 107.88 78.28 139.56L78.28 139.56Q78.28 156.72 82.24 163.98Q86.20 171.24 95.33 171.24Q104.46 171.24 114.58 168.60ZM258.68 119.32L258.68 119.32L258.68 165.08Q259.12 170.36 260.44 172.45Q261.76 174.54 265.94 175.42L265.94 175.42L265.06 197.64Q253.84 197.64 247.13 196.10Q240.42 194.56 233.60 189.94L233.60 189.94Q217.76 197.64 201.26 197.64L201.26 197.64Q167.16 197.64 167.16 161.56L167.16 161.56Q167.16 143.96 176.62 136.59Q186.08 129.22 205.66 127.90L205.66 127.90L229.20 126.14L229.20 119.32Q229.20 112.50 226.12 109.97Q223.04 107.44 216.22 107.44L216.22 107.44L174.86 109.20L173.98 88.74Q197.52 82.36 218.75 82.36Q239.98 82.36 249.33 91.16Q258.68 99.96 258.68 119.32ZM229.20 146.60L209.18 148.36Q196.86 149.46 196.86 161.56Q196.86 173.66 207.64 173.66L207.64 173.66Q216 173.66 225.90 171.02L225.90 171.02L229.20 170.14L229.20 146.60ZM347.78 85L347.78 110.08L320.72 110.08L320.72 155.18Q320.72 161.78 321.05 164.53Q321.38 167.28 323.47 169.26Q325.56 171.24 329.96 171.24L329.96 171.24L346.68 170.80L348 194.34Q333.26 197.64 325.56 197.64L325.56 197.64Q305.76 197.64 298.50 188.73Q291.24 179.82 291.24 155.84L291.24 155.84L291.24 110.08L278.26 110.08L278.26 85L291.24 85L291.24 54.42L320.72 54.42L320.72 85L347.78 85Z" fill="#FFFFFF"/>
+        <g transform="translate(364.0,85.0) scale(0.940)">
+          <defs><clipPath id="cdc0"><polygon points="140,0 98,0 49,58.5 98,117 140,117 91,58.5"/></clipPath><filter id="blc0" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+          <polygon points="140,0 98,0 49,58.5 98,117 140,117 91,58.5" fill="#13836C"/>
+          <g clip-path="url(#cdc0)"><polygon points="0,0 42,0 91,58.5 42,117 0,117 49,58.5" transform="translate(6,0)" fill="#082E2F" opacity=".45" filter="url(#blc0)"/></g>
+          <polygon points="0,0 42,0 91,58.5 42,117 0,117 49,58.5" fill="#20D49A"/>
+        </g>
+      </svg><span class="sello">PLATAFORMA DE DATOS + IA</span></div>
+    <div class="hero__cuerpo">
+      <div>
+        <h1>Tus datos, tus procesos, tu IA, <em>en un solo lugar.</em></h1>
+        <p class="hero__bajada">datx conecta tu IA con los datos reales de la empresa. <b>Cada área arma sus propios bloques en minutos</b>, sin programar y sin riesgos para tus datos.</p>
+      </div>
+      <div class="cifras">
+        <div class="cifra"><b>Tus datos</b><span>conectados de manera segura y siempre al día</span></div>
+        <div class="cifra"><b>Tus procesos</b><span>formularios y circuitos entre áreas, sin planillas</span></div>
+        <div class="cifra"><b>Tu IA</b><span>arma bloques en minutos, con tus mismos permisos</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="cuerpo">
+    <div>
+      <div class="rotulo"><span>01</span><h2>Todo en datx es un bloque</h2></div>
+      <div class="bloques">
+        <div class="bloque">
+          <div class="bloque__cab"><span class="icono"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><h3>Muestra información</h3></div>
+          <p>Bloques con KPIs, gráficos y tablas sobre los datos reales, siempre al día.</p>
+          <p class="ej"><b>Ej.:</b> ventas por región, stock, cobranzas, margen.</p>
+        </div>
+        <div class="bloque">
+          <div class="bloque__cab"><span class="icono"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><h3>Genera información</h3></div>
+          <p>Bloques para cargar la información que no está en ningún sistema y sumarla a la que ya tenés.</p>
+          <p class="ej"><b>Ej.:</b> presupuestos, objetivos, visitas, controles de calidad.</p>
+        </div>
+        <div class="bloque">
+          <div class="bloque__cab"><span class="icono"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/></svg></span><h3>Interconecta áreas</h3></div>
+          <p>Cada área en su bloque, sobre los mismos datos: lo que una carga, la otra lo ve.</p>
+          <p class="ej"><b>Ej.:</b> Ventas pide → Depósito prepara → Logística despacha.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="rotulo"><span>02</span><h2>Cómo funciona</h2></div>
+      <div class="pasos">
+        <div class="paso"><i>1</i><b>Conectamos</b><p>Acceso de solo lectura a tus bases, APIs y archivos Excel.</p></div>
+        <div class="paso"><i>2</i><b>La IA aprende</b><p>Documenta tablas, métricas y definiciones.</p></div>
+        <div class="paso"><i>3</i><b>Pedís el bloque</b><p>En tus palabras; la IA arma un borrador.</p></div>
+        <div class="paso"><i>4</i><b>Revisás y publicás</b><p>Un responsable lo aprueba y lo comparte.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="rotulo"><span>03</span><h2>Todo lo que incluye</h2></div>
+      <div class="funciones">
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>Conexión a datos</h3><ul>
+          <li><b>PostgreSQL, SQL Server</b> y más</li>
+          <li><b>APIs</b> de otros sistemas</li>
+          <li><b>Excel y CSV</b> adjuntos</li>
+          <li><b>Base propia</b> para datos nuevos</li>
+          </ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Visualización</h3><ul>
+          <li><b>KPIs</b> con comparación</li>
+          <li>Gráficos, tablas y mapas</li>
+          <li><b>Filtros</b> que se recuerdan</li>
+          <li><b>Descargas</b> en Excel, PDF y Word</li></ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Carga de información</h3><ul>
+          <li><b>Formularios</b> simples o completos</li>
+          <li><b>Edición en grilla</b>, como en Excel</li>
+          <li>Altas, cambios y bajas</li>
+          <li>Registro de quién cargó y cuándo</li>
+          </ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Avisos y alertas</h3><ul>
+          <li><b>Correos</b> desde el bloque: “Avisar a Compras”</li>
+          <li><b>Alertas:</b> “si el stock baja del mínimo”</li>
+          <li>Cada 15 minutos o diarias</li><li>Solo a personas de la empresa</li>
+          </ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Compartir y acceder</h3><ul>
+          <li><b>Compartir</b> con personas o grupos</li>
+          <li>Permiso para ver o para cargar datos</li>
+          <li>Desde compu, tablet o celular</li></ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>IA que conoce tu negocio</h3><ul>
+          <li><b>Tu IA conectada</b></li>
+          <li>Le pedís bloques en tus palabras</li>
+          <li>Usa las <b>definiciones oficiales</b> de la empresa</li>
+          <li>Aprende de cada corrección</li>
+          </ul></div>
+      </div>
+    </div>
+
+    <div class="seguridad">
+      <div><h2>Tus datos, <em>bajo tus reglas.</em></h2><p>Controles de fábrica que no se pueden apagar.</p></div>
+      <div class="controles">
+        <div class="control"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/></svg><div><b>Solo lectura</b><span>Nunca modifica tus bases.</span></div></div>
+        <div class="control"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Datos sensibles fuera</b><span>Solo lo que la empresa habilita.</span></div></div>
+        <div class="control"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div><b>Publica una persona</b><span>La IA solo arma borradores.</span></div></div>
+        <div class="control"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div><b>Permisos por persona</b><span>Lo que no ves, tu IA tampoco.</span></div></div>
+        <div class="control"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><div><b>Registro de acciones</b><span>Auditable en cualquier momento.</span></div></div>
+        <div class="control"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div><b>Cuenta de empresa</b><span>Quien se va, pierde el acceso.</span></div></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="cierre">
+    <div>
+      <h2>Mirá cómo se arma un bloque en minutos.</h2>
+      <p>Coordinamos una demo y armamos en vivo un ejemplo pensado para tu rubro.</p>
+    </div>
+    <div class="contacto"><b>Pedí tu demo</b><a href="https://wa.me/5493412739092" style="color:inherit;text-decoration:none"><span>WhatsApp +54 9 341 273-9092</span></a></div>
+  </footer>
+</section>
+</body>
+</html>
