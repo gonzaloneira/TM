@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>datx · Ficha comercial</title>
+<meta name="description" content="datx conecta tu IA con los datos reales de la empresa. Cada área arma sus propios bloques en minutos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Sistema de diseño (ui-ux-pro-max): patrón Hero + Funcionalidades + CTA, tipografía Plus Jakarta Sans,
+   vidrio esmerilado sobre el encabezado oscuro y grilla tipo bento para las funcionalidades.
+   Paleta: la de la marca datx (la sugerida por el skill era azul y se descartó). */
+:root{
+  --oscuro:#082121; --oscuro-2:#0f3130; --oscuro-linea:rgba(255,255,255,.14);
+  --sobre-oscuro:#f1f7f6; --sobre-oscuro-2:#b3cbc9;
+  --ambar:#f59e0b; --ambar-texto:#1c1206; --ambar-tinta:#b45309; --ambar-suave:#fef3dc;
+  --verde-x:#2ee0a6;
+  --fondo:#ffffff; --tile:#f5f7f9; --tinta:#0f172a; --tinta-2:#475569; --tinta-3:#64748b; --linea:#e2e8f0;
+  --r-tile:16px; --r-in:10px;
+  --fuente:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#d9e1e0}
+body{font:400 12px/1.4 var(--fuente);color:var(--tinta);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,p,ul,ol{margin:0}
+h1,h2,h3{text-wrap:balance}
+.i{width:18px;height:18px;flex:none;display:block}
+.pagina{width:210mm;height:297mm;overflow:hidden;background:var(--fondo);margin:0 auto;display:flex;flex-direction:column}
+@media screen{.pagina{margin:32px auto;box-shadow:0 8px 32px rgba(8,33,33,.18)}}
+
+/* ---------- Hero ---------- */
+.hero{flex:none;position:relative;overflow:hidden;background:var(--oscuro);color:var(--sobre-oscuro);padding:18px 32px 20px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero::before{width:420px;height:420px;right:-60px;top:-200px;background:radial-gradient(closest-side,rgba(46,224,166,.30),transparent)}
+.hero::after{width:380px;height:380px;right:120px;bottom:-260px;background:radial-gradient(closest-side,rgba(245,158,11,.30),transparent)}
+.hero>*{position:relative}
+.hero__top{display:flex;align-items:center;justify-content:space-between}
+.hero .logo{height:28px;width:auto;display:block}
+.etiqueta{font:600 11px/1 var(--fuente);letter-spacing:.02em;color:var(--sobre-oscuro);background:rgba(255,255,255,.08);border:1px solid var(--oscuro-linea);border-radius:999px;padding:7px 12px}
+.etiqueta b{color:var(--ambar);font-weight:700}
+.hero__cuerpo{margin-top:16px}
+.hero__texto{max-width:560px}
+h1{font:800 28px/1.08 var(--fuente);letter-spacing:-.035em}
+h1 .degradado{color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#34d399,#2ee0a6 40%,#fcd34d)}
+.bajada{margin-top:10px;font:400 13px/1.5 var(--fuente);color:var(--sobre-oscuro-2)}
+.bajada strong{color:var(--sobre-oscuro);font-weight:600}
+/* Vidrio esmerilado: relleno translúcido + borde claro de 1px + reflejo superior */
+.pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;list-style:none;padding:0;margin-top:16px}
+.pilar{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:1px solid var(--oscuro-linea);border-radius:12px;padding:7px 14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.pilar b{display:block;font:700 14px/1.3 var(--fuente);color:var(--ambar)}
+.pilar span{display:block;margin-top:2px;font-size:12px;line-height:1.4;color:var(--sobre-oscuro-2)}
+
+/* ---------- Contenido ---------- */
+main{flex:1;padding:14px 32px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.cab{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.cab .num{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:var(--oscuro);color:var(--ambar);font:700 11px/1 var(--fuente);font-variant-numeric:tabular-nums}
+.cab h2{font:700 17px/1.2 var(--fuente);letter-spacing:-.02em}
+
+/* Bloques */
+.bloques{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bloque{background:var(--tile);border-radius:var(--r-tile);padding:12px 16px;display:flex;flex-direction:column;gap:4px}
+.bloque__cab{display:flex;align-items:center;gap:10px}
+.chip{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:var(--r-in);background:var(--ambar-suave);color:var(--ambar-tinta)}
+.bloque h3{font:700 14px/1.3 var(--fuente)}
+.bloque p{color:var(--tinta-2)}
+.bloque .ej{margin-top:auto;padding-top:6px;border-top:1px solid var(--linea);color:var(--tinta-3);font-size:11.5px}
+.bloque .ej b{color:var(--ambar-tinta);font-weight:700}
+
+/* Pasos: stepper conectado */
+.pasos{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.pasos::before{content:"";position:absolute;left:12px;right:calc(25% - 16px);top:12px;height:2px;background:repeating-linear-gradient(90deg,var(--ambar) 0 6px,transparent 6px 10px)}
+.paso{position:relative}
+.paso i{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ambar);color:var(--ambar-texto);font:800 12px/1 var(--fuente);font-style:normal;box-shadow:0 0 0 4px var(--fondo)}
+.paso__cab{display:flex;align-items:center;gap:0}
+.paso b{font:700 13px/1.3 var(--fuente);background:var(--fondo);padding:0 8px}
+.paso p{margin-top:2px;color:var(--tinta-2)}
+
+/* Funcionalidades en bento: tamaños variados en 4 columnas */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--tile);border-radius:var(--r-tile);padding:10px 14px 12px}
+
+.tile h3{display:flex;align-items:center;gap:8px;font:700 13.5px/1.3 var(--fuente);margin-bottom:6px}
+.tile h3 .i{color:var(--ambar-tinta)}
+.tile ul{list-style:none;padding:0;display:grid;gap:2px}
+
+.tile li{position:relative;padding-left:12px;color:var(--tinta-2);line-height:1.38}
+.tile li::before{content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--ambar)}
+.tile li strong{color:var(--tinta);font-weight:600}
+.tile.destacado{background:var(--oscuro);color:var(--sobre-oscuro)}
+.tile.destacado h3 .i{color:var(--verde-x)}
+.tile.destacado li{color:var(--sobre-oscuro-2)}
+.tile.destacado li strong{color:var(--sobre-oscuro)}
+
+/* Seguridad */
+.seguridad{border:1px solid var(--linea);border-radius:var(--r-tile);padding:12px 18px 14px}
+.seguridad__cab{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+.seguridad h2{font:700 17px/1.2 var(--fuente);letter-spacing:-.02em}
+.seguridad h2 span{color:var(--ambar-tinta)}
+.seguridad__cab p{color:var(--tinta-3)}
+.controles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 16px}
+.control{display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start}
+.control .chip{width:18px;height:18px;background:none;border-radius:0;margin-top:1px}
+.control .chip .i{width:16px;height:16px}
+.control b{display:block;font-weight:700;font-size:12px}
+.control span{color:var(--tinta-2)}
+
+/* ---------- CTA ---------- */
+.cierre{flex:none;background:var(--ambar);color:var(--ambar-texto);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.cierre h2{font:800 18px/1.2 var(--fuente);letter-spacing:-.025em}
+.cierre p{margin-top:3px}
+.contacto{flex:none;display:flex;align-items:center;gap:12px;background:var(--oscuro);color:var(--sobre-oscuro);border-radius:12px;padding:10px 16px;text-decoration:none}
+.contacto .i{color:var(--verde-x);width:24px;height:24px}
+.contacto b{display:block;font:700 13.5px/1.3 var(--fuente)}
+.contacto span{font-size:12px;color:var(--sobre-oscuro-2);font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<article class="pagina">
+
+  <header class="hero">
+    <div class="hero__top"><svg class="logo" role="img" aria-label="datx" viewBox="44 37 456 165" >
+        <path d="M117.66 41L147.14 41L147.14 195L117.88 195L117.88 190.38Q102.48 197.64 91.26 197.64L91.26 197.64Q67.28 197.64 57.82 183.78Q48.36 169.92 48.36 139.89Q48.36 109.86 59.69 96.11Q71.02 82.36 93.90 82.36L93.90 82.36Q100.94 82.36 113.48 84.56L113.48 84.56L117.66 85.44L117.66 41ZM114.58 168.60L114.58 168.60L117.66 167.94L117.66 110.08Q105.56 107.88 96.10 107.88L96.10 107.88Q78.28 107.88 78.28 139.56L78.28 139.56Q78.28 156.72 82.24 163.98Q86.20 171.24 95.33 171.24Q104.46 171.24 114.58 168.60ZM258.68 119.32L258.68 119.32L258.68 165.08Q259.12 170.36 260.44 172.45Q261.76 174.54 265.94 175.42L265.94 175.42L265.06 197.64Q253.84 197.64 247.13 196.10Q240.42 194.56 233.60 189.94L233.60 189.94Q217.76 197.64 201.26 197.64L201.26 197.64Q167.16 197.64 167.16 161.56L167.16 161.56Q167.16 143.96 176.62 136.59Q186.08 129.22 205.66 127.90L205.66 127.90L229.20 126.14L229.20 119.32Q229.20 112.50 226.12 109.97Q223.04 107.44 216.22 107.44L216.22 107.44L174.86 109.20L173.98 88.74Q197.52 82.36 218.75 82.36Q239.98 82.36 249.33 91.16Q258.68 99.96 258.68 119.32ZM229.20 146.60L209.18 148.36Q196.86 149.46 196.86 161.56Q196.86 173.66 207.64 173.66L207.64 173.66Q216 173.66 225.90 171.02L225.90 171.02L229.20 170.14L229.20 146.60ZM347.78 85L347.78 110.08L320.72 110.08L320.72 155.18Q320.72 161.78 321.05 164.53Q321.38 167.28 323.47 169.26Q325.56 171.24 329.96 171.24L329.96 171.24L346.68 170.80L348 194.34Q333.26 197.64 325.56 197.64L325.56 197.64Q305.76 197.64 298.50 188.73Q291.24 179.82 291.24 155.84L291.24 155.84L291.24 110.08L278.26 110.08L278.26 85L291.24 85L291.24 54.42L320.72 54.42L320.72 85L347.78 85Z" fill="#FFFFFF"/>
+        <g transform="translate(364.0,85.0) scale(0.940)">
+          <defs><clipPath id="cd18cw"><polygon points="140,0 98,0 49,58.5 98,117 140,117 91,58.5"/></clipPath><filter id="bl18cw" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+          <polygon points="140,0 98,0 49,58.5 98,117 140,117 91,58.5" fill="#13836C"/>
+          <g clip-path="url(#cd18cw)"><polygon points="0,0 42,0 91,58.5 42,117 0,117 49,58.5" transform="translate(6,0)" fill="#082E2F" opacity=".45" filter="url(#bl18cw)"/></g>
+          <polygon points="0,0 42,0 91,58.5 42,117 0,117 49,58.5" fill="#20D49A"/>
+        </g>
+      </svg><span class="etiqueta">Plataforma de <b>datos + IA</b></span></div>
+    <div class="hero__cuerpo">
+      <div class="hero__texto">
+        <h1>Tus datos, tus procesos, tu IA, <span class="degradado">en un solo lugar.</span></h1>
+        <p class="bajada">datx conecta tu IA con los datos reales de la empresa. <strong>Cada área arma sus propios bloques en minutos</strong>, sin programar y sin riesgos para tus datos.</p>
+      </div>
+      <ul class="pilares">
+        <li class="pilar"><b>Tus datos</b><span>conectados de manera segura y siempre al día</span></li>
+        <li class="pilar"><b>Tus procesos</b><span>formularios y circuitos entre áreas, sin planillas</span></li>
+        <li class="pilar"><b>Tu IA</b><span>arma bloques en minutos, con tus mismos permisos</span></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="cab"><span class="num">01</span><h2>Todo en datx es un bloque</h2></div>
+      <div class="bloques">
+        <article class="bloque">
+          <div class="bloque__cab"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/></svg></span><h3>Muestra información</h3></div>
+          <p>Bloques con KPIs, gráficos y tablas sobre los datos reales, siempre al día.</p>
+          <p class="ej"><b>Ej.:</b> ventas por región, stock, cobranzas, margen.</p>
+        </article>
+        <article class="bloque">
+          <div class="bloque__cab"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z"/></svg></span><h3>Genera información</h3></div>
+          <p>Bloques para cargar la información que no está en ningún sistema y sumarla a la que ya tenés.</p>
+          <p class="ej"><b>Ej.:</b> presupuestos, objetivos, visitas, controles de calidad.</p>
+        </article>
+        <article class="bloque">
+          <div class="bloque__cab"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M245.66,74.34l-32-32a8,8,0,0,0-11.32,11.32L220.69,72H208c-49.33,0-61.05,28.12-71.38,52.92-9.38,22.51-16.92,40.59-49.48,42.84a40,40,0,1,0,.1,16c43.26-2.65,54.34-29.15,64.14-52.69C161.41,107,169.33,88,208,88h12.69l-18.35,18.34a8,8,0,0,0,11.32,11.32l32-32A8,8,0,0,0,245.66,74.34ZM48,200a24,24,0,1,1,24-24A24,24,0,0,1,48,200Z"/></svg></span><h3>Interconecta áreas</h3></div>
+          <p>Cada área en su bloque, sobre los mismos datos: lo que una carga, la otra lo ve.</p>
+          <p class="ej"><b>Ej.:</b> Ventas pide → Depósito prepara → Logística despacha.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="num">02</span><h2>Cómo funciona</h2></div>
+      <ol class="pasos">
+        <li class="paso"><div class="paso__cab"><i>1</i><b>Conectamos</b></div><p>Acceso de solo lectura a tus bases, APIs y archivos Excel.</p></li>
+        <li class="paso"><div class="paso__cab"><i>2</i><b>La IA aprende</b></div><p>Documenta tablas, métricas y definiciones.</p></li>
+        <li class="paso"><div class="paso__cab"><i>3</i><b>Pedís el bloque</b></div><p>En tus palabras; la IA arma un borrador.</p></li>
+        <li class="paso"><div class="paso__cab"><i>4</i><b>Revisás y publicás</b></div><p>Un responsable lo aprueba y lo comparte.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="cab"><span class="num">03</span><h2>Todo lo que incluye</h2></div>
+      <div class="bento">
+        <div class="tile"><h3><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24C74.17,24,32,48.6,32,80v96c0,31.4,42.17,56,96,56s96-24.6,96-56V80C224,48.6,181.83,24,128,24Zm80,104c0,9.62-7.88,19.43-21.61,26.92C170.93,163.35,150.19,168,128,168s-42.93-4.65-58.39-13.08C55.88,147.43,48,137.62,48,128V111.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64ZM69.61,53.08C85.07,44.65,105.81,40,128,40s42.93,4.65,58.39,13.08C200.12,60.57,208,70.38,208,80s-7.88,19.43-21.61,26.92C170.93,115.35,150.19,120,128,120s-42.93-4.65-58.39-13.08C55.88,99.43,48,89.62,48,80S55.88,60.57,69.61,53.08ZM186.39,202.92C170.93,211.35,150.19,216,128,216s-42.93-4.65-58.39-13.08C55.88,195.43,48,185.62,48,176V159.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64V176C208,185.62,200.12,195.43,186.39,202.92Z"/></svg>Conexión a datos</h3><ul>
+          <li><strong>PostgreSQL, SQL Server</strong> y más</li>
+          <li><strong>Excel y CSV</strong> adjuntos</li>
+          <li><strong>APIs</strong> de otros sistemas</li>
+          <li><strong>Base propia</strong> para datos nuevos</li></ul></div>
+        <div class="tile"><h3><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"/></svg>Visualización</h3><ul>
+          <li><strong>KPIs</strong> con comparación</li>
+          <li><strong>Filtros</strong> que se recuerdan</li>
+          <li>Gráficos, tablas y mapas</li>
+          <li><strong>Descargas</strong> en Excel, PDF y Word</li></ul></div>
+        <div class="tile"><h3><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,58.34l-32-32a8,8,0,0,0-11.32,0l-96,96A8,8,0,0,0,88,128v32a8,8,0,0,0,8,8h32a8,8,0,0,0,5.66-2.34l96-96A8,8,0,0,0,229.66,58.34ZM124.69,152H104V131.31l64-64L188.69,88ZM200,76.69,179.31,56,192,43.31,212.69,64ZM224,128v80a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h80a8,8,0,0,1,0,16H48V208H208V128a8,8,0,0,1,16,0Z"/></svg>Carga de información</h3><ul>
+          <li><strong>Formularios</strong> simples o completos</li>
+          <li><strong>Edición en grilla</strong>, como en Excel</li>
+          <li>Altas, cambios y bajas</li>
+          <li>Registro de quién cargó y cuándo</li></ul></div>
+        <div class="tile"><h3><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,71.1a8,8,0,0,1-10.78-3.42,94.13,94.13,0,0,0-33.46-36.91,8,8,0,1,1,8.54-13.54,111.46,111.46,0,0,1,39.12,43.09A8,8,0,0,1,224,71.1ZM35.71,72a8,8,0,0,0,7.1-4.32A94.13,94.13,0,0,1,76.27,30.77a8,8,0,1,0-8.54-13.54A111.46,111.46,0,0,0,28.61,60.32,8,8,0,0,0,35.71,72Zm186.1,103.94A16,16,0,0,1,208,200H167.2a40,40,0,0,1-78.4,0H48a16,16,0,0,1-13.79-24.06C43.22,160.39,48,138.28,48,112a80,80,0,0,1,160,0C208,138.27,212.78,160.38,221.81,175.94ZM150.62,200H105.38a24,24,0,0,0,45.24,0ZM208,184c-10.64-18.27-16-42.49-16-72a64,64,0,0,0-128,0c0,29.52-5.38,53.74-16,72Z"/></svg>Avisos y alertas</h3><ul>
+          <li><strong>Correos</strong> desde el bloque: “Avisar a Compras”</li>
+          <li><strong>Alertas:</strong> “si el stock baja del mínimo”</li>
+          <li>Solo a personas de la empresa</li></ul></div>
+        <div class="tile"><h3><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"/></svg>Acceso y permisos</h3><ul>
+          <li><strong>Compartir</strong> con personas o equipos</li>
+          <li>Para ver o para cargar datos</li>
+          <li>Desde compu, tablet o celular</li></ul></div>
+        <div class="tile destacado"><h3><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></svg>IA que conoce tu negocio</h3><ul>
+          <li><strong>Tu IA conectada</strong></li>
+          <li>Aprende tus definiciones y criterios</li>
+          <li>Le pedís bloques en tus palabras</li></ul></div>
+      </div>
+    </section>
+
+    <section class="seguridad">
+      <div class="seguridad__cab"><h2>Tus datos, <span>bajo tus reglas.</span></h2><p>Controles de fábrica que no se pueden apagar.</p></div>
+      <div class="controles">
+        <div class="control"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24C74.17,24,32,48.6,32,80v96c0,31.4,42.17,56,96,56s96-24.6,96-56V80C224,48.6,181.83,24,128,24Zm80,104c0,9.62-7.88,19.43-21.61,26.92C170.93,163.35,150.19,168,128,168s-42.93-4.65-58.39-13.08C55.88,147.43,48,137.62,48,128V111.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64ZM69.61,53.08C85.07,44.65,105.81,40,128,40s42.93,4.65,58.39,13.08C200.12,60.57,208,70.38,208,80s-7.88,19.43-21.61,26.92C170.93,115.35,150.19,120,128,120s-42.93-4.65-58.39-13.08C55.88,99.43,48,89.62,48,80S55.88,60.57,69.61,53.08ZM186.39,202.92C170.93,211.35,150.19,216,128,216s-42.93-4.65-58.39-13.08C55.88,195.43,48,185.62,48,176V159.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64V176C208,185.62,200.12,195.43,186.39,202.92Z"/></svg></span><div><b>Solo lectura</b><span>Nunca modifica tus bases.</span></div></div>
+        <div class="control"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.85a32,32,0,0,1-41.67-45.85ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l18,19.75a48,48,0,0,0,63.66,70l14.73,16.2A112,112,0,0,1,128,192Zm6-95.43a8,8,0,0,1,3-15.72,48.16,48.16,0,0,1,38.77,42.64,8,8,0,0,1-7.22,8.71,6.39,6.39,0,0,1-.75,0,8,8,0,0,1-8-7.26A32.09,32.09,0,0,0,134,96.57Zm113.28,34.69c-.42.94-10.55,23.37-33.36,43.8a8,8,0,1,1-10.67-11.92A132.77,132.77,0,0,0,231.05,128a133.15,133.15,0,0,0-23.12-30.77C185.67,75.19,158.78,64,128,64a118.37,118.37,0,0,0-19.36,1.57A8,8,0,1,1,106,49.79,134,134,0,0,1,128,48c34.88,0,66.57,13.26,91.66,38.35,18.83,18.83,27.3,37.62,27.65,38.41A8,8,0,0,1,247.31,131.26Z"/></svg></span><div><b>Datos sensibles fuera</b><span>Solo lo que la empresa habilita.</span></div></div>
+        <div class="control"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-11.55,39.29c-4.79,5-9.75,10.17-12.38,16.52-2.52,6.1-2.63,13.07-2.73,19.82-.1,7-.21,14.33-3.32,17.43s-10.39,3.22-17.43,3.32c-6.75.1-13.72.21-19.82,2.73-6.35,2.63-11.52,7.59-16.52,12.38S132,224,128,224s-9.15-4.92-14.11-9.69-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82-2.63-6.35-7.59-11.52-12.38-16.52S32,132,32,128s4.92-9.15,9.69-14.11,9.75-10.17,12.38-16.52c2.52-6.1,2.63-13.07,2.73-19.82.1-7,.21-14.33,3.32-17.43S70.51,56.9,77.55,56.8c6.75-.1,13.72-.21,19.82-2.73,6.35-2.63,11.52-7.59,16.52-12.38S124,32,128,32s9.15,4.92,14.11,9.69,10.17,9.75,16.52,12.38c6.1,2.52,13.07,2.63,19.82,2.73,7,.1,14.33.21,17.43,3.32s3.22,10.39,3.32,17.43c.1,6.75.21,13.72,2.73,19.82,2.63,6.35,7.59,11.52,12.38,16.52S224,124,224,128,219.08,137.15,214.31,142.11ZM173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34Z"/></svg></span><div><b>Publica una persona</b><span>La IA solo arma borradores.</span></div></div>
+        <div class="control"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M72,128a134.63,134.63,0,0,1-14.16,60.47,8,8,0,1,1-14.32-7.12A118.8,118.8,0,0,0,56,128,71.73,71.73,0,0,1,83,71.8,8,8,0,1,1,93,84.29,55.76,55.76,0,0,0,72,128Zm56-8a8,8,0,0,0-8,8,184.12,184.12,0,0,1-23,89.1,8,8,0,0,0,14,7.76A200.19,200.19,0,0,0,136,128,8,8,0,0,0,128,120Zm0-32a40,40,0,0,0-40,40,8,8,0,0,0,16,0,24,24,0,0,1,48,0,214.09,214.09,0,0,1-20.51,92A8,8,0,1,0,146,226.83,230,230,0,0,0,168,128,40,40,0,0,0,128,88Zm0-64A104.11,104.11,0,0,0,24,128a87.76,87.76,0,0,1-5,29.33,8,8,0,0,0,15.09,5.33A103.9,103.9,0,0,0,40,128a88,88,0,0,1,176,0,282.24,282.24,0,0,1-5.29,54.45,8,8,0,0,0,6.3,9.4,8.22,8.22,0,0,0,1.55.15,8,8,0,0,0,7.84-6.45A298.37,298.37,0,0,0,232,128,104.12,104.12,0,0,0,128,24ZM94.4,152.17A8,8,0,0,0,85,158.42a151,151,0,0,1-17.21,45.44,8,8,0,0,0,13.86,8,166.67,166.67,0,0,0,19-50.25A8,8,0,0,0,94.4,152.17ZM128,56a72.85,72.85,0,0,0-9,.56,8,8,0,0,0,2,15.87A56.08,56.08,0,0,1,184,128a252.12,252.12,0,0,1-1.92,31A8,8,0,0,0,189,168a8.39,8.39,0,0,0,1,.06,8,8,0,0,0,7.92-7,266.48,266.48,0,0,0,2-33A72.08,72.08,0,0,0,128,56Zm57.93,128.25a8,8,0,0,0-9.75,5.75c-1.46,5.69-3.15,11.4-5,17a8,8,0,0,0,5,10.13,7.88,7.88,0,0,0,2.55.42,8,8,0,0,0,7.58-5.46c2-5.92,3.79-12,5.35-18.05A8,8,0,0,0,185.94,184.26Z"/></svg></span><div><b>Permisos por persona</b><span>Lo que no ves, tu IA tampoco.</span></div></div>
+        <div class="control"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-45.54-48.85a36.05,36.05,0,1,0-11.31,11.31l11.19,11.2a8,8,0,0,0,11.32-11.32ZM104,148a20,20,0,1,1,20,20A20,20,0,0,1,104,148Z"/></svg></span><div><b>Registro de acciones</b><span>Auditable en cualquier momento.</span></div></div>
+        <div class="control"><span class="chip"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,112a8,8,0,0,1-8,8H152a8,8,0,0,1,0-16h40A8,8,0,0,1,200,112Zm-8,24H152a8,8,0,0,0,0,16h40a8,8,0,0,0,0-16Zm40-80V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Zm-80.26-34a8,8,0,1,1-15.5,4c-2.63-10.26-13.06-18-24.25-18s-21.61,7.74-24.25,18a8,8,0,1,1-15.5-4,39.84,39.84,0,0,1,17.19-23.34,32,32,0,1,1,45.12,0A39.76,39.76,0,0,1,135.75,166ZM96,136a16,16,0,1,0-16-16A16,16,0,0,0,96,136Z"/></svg></span><div><b>Cuenta de empresa</b><span>Quien se va, pierde el acceso.</span></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cierre">
+    <div>
+      <h2>Mirá cómo se arma un bloque en minutos.</h2>
+      <p>Coordinamos una demo y armamos en vivo un ejemplo pensado para tu rubro.</p>
+    </div>
+    <a class="contacto" href="https://wa.me/5493412739092"><svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></svg><div><b>Pedí tu demo</b><span>WhatsApp +54 9 341 273-9092</span></div></a>
+  </footer>
+</article>
+</body>
+</html>
