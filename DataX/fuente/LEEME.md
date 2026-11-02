@@ -10,3 +10,11 @@ node fuente/generar-pdf.js "$PWD/fuente" "$PWD"
 ```
 
 Antes de regenerar, reemplazá `[mail o WhatsApp de contacto]` en `generar-pdf.js` por el contacto real.
+
+## Versión de una página
+
+- `../datx-una-pagina.pdf` / `../datx-una-pagina.html`
+
+```
+node fuente/generar-pdf.js "$PWD/fuente" "$PWD" datx-una-pagina
+```
