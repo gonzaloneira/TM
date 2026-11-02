@@ -102,44 +102,15 @@ p,ul{margin:0}
 .fuentes>span:first-child{font:700 7pt var(--mono);letter-spacing:.06em;color:var(--text-3);text-transform:uppercase;margin-right:1mm}
 .fuente{padding:.8mm 2.6mm;border:1px solid var(--ambar-borde);background:#fff;border-radius:999px;font-size:7.6pt;font-weight:600}
 
-/* ===== Variante verde + ámbar: el verde de la marca se alterna y se funde con el ámbar ===== */
-:root{--verde:#0f766e;--verde-medio:#13836C;--verde-bg:#e3f5f1;--verde-borde:#b4e2d8;--degradado:linear-gradient(90deg,#20d49a,#2ee0a6 35%,#f59e0b)}
-.sello{background:var(--degradado);color:#062018}
-.hero::before{background:radial-gradient(closest-side,rgba(245,158,11,.24),transparent)}
-.hero::after{background:radial-gradient(closest-side,rgba(46,224,166,.28),transparent)}
-.cifra::before{background:linear-gradient(180deg,#2ee0a6,#f59e0b)}
-.cifra:nth-child(1) b{color:var(--logo-x)}
-.cifra:nth-child(2) b{color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#2ee0a6,#fcd34d)}
-.cifra:nth-child(3) b{color:var(--ambar)}
-
+/* ===== Variante verde + ámbar (sutil): el ámbar sigue siendo el acento principal; el verde de la marca
+   aparece como segundo acento en íconos y etiquetas. El único degradado es el del título. ===== */
+:root{--verde:#0f766e;--verde-bg:#e3f5f1}
+.hero::before{background:radial-gradient(closest-side,rgba(245,158,11,.22),transparent)}
 .rotulo span{background:var(--verde);color:#fff}
-.rotulo::after{background:linear-gradient(90deg,var(--verde),var(--ambar) 55%,transparent)}
-
-.bloque:nth-child(1){border-top-color:var(--verde-medio)}
-.bloque:nth-child(1) .icono{background:var(--verde-bg);color:var(--verde)}
-.bloque:nth-child(1) .ej b{color:var(--verde)}
-.bloque:nth-child(3){border-top:0;position:relative;overflow:hidden;padding-top:calc(3mm + 3px)}
-.bloque:nth-child(3)::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--verde-medio),var(--ambar))}
-.bloque:nth-child(3) .icono{background:linear-gradient(135deg,var(--verde-bg),var(--ambar-bg));color:var(--verde)}
-
-.pasos{background:linear-gradient(90deg,var(--verde-bg),#f4f6e6 50%,var(--ambar-bg));border-color:var(--verde-borde)}
-.paso+.paso{border-left-color:rgba(15,118,110,.18)}
-.paso p{color:var(--text-2)}
-.paso:nth-child(1) i{background:var(--verde-medio);color:#fff}
-.paso:nth-child(2) i{background:#2ec4a0;color:#062018}
-.paso:nth-child(3) i{background:#f2b632;color:var(--ambar-texto)}
-.paso:nth-child(4) i{background:var(--ambar);color:var(--ambar-texto)}
-
+.rotulo::after{background:var(--ambar-borde);height:1px}
+.icono{background:var(--verde-bg);color:var(--verde)}
 .funcion h3 .i{color:var(--verde)}
-.funcion:nth-child(even) h3 .i{color:var(--ambar-osc)}
-.funcion:nth-child(even) li::before{background:var(--verde-medio)}
-.funcion{border-top:2px solid var(--verde-borde)}
-.funcion:nth-child(even){border-top-color:var(--ambar-borde)}
-
-.control:nth-child(odd) .i{color:var(--logo-x)}
-.seguridad h2 em{color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#2ee0a6,#fcd34d)}
-
-.cierre{background:linear-gradient(90deg,var(--ambar) 0%,#f4b53b 45%,#2ee0a6 100%)}
+.control .i{color:var(--logo-x)}
 .cierre .contacto b{color:var(--logo-x)}
 </style>
 </head>
