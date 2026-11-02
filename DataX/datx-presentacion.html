@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>datx · Presentación para clientes</title>
+<style>
+/* Paleta y tipografía tomadas del kit de marca datx (banda oscura verde petróleo, X verde, CTA ámbar). */
+:root{
+  --brand-dark:#082121; --brand-surface:#0f3130; --brand-line:#1d4644;
+  --on-brand:#f1f7f6; --on-brand-2:#a9c3c1; --logo-x:#2ee0a6; --logo-x-2:#13836C;
+  --cta:#f59e0b; --cta-text:#1c1206;
+  --bg:#ffffff; --surface:#f8fafc; --surface-2:#f1f5f9;
+  --text:#0f172a; --text-2:#475569; --text-3:#64748b;
+  --border:#e2e8f0; --border-strong:#cbd5e1;
+  --accent:#0f766e; --accent-soft:#ccfbf1; --accent-subtle:#f0fdfa;
+  --c-verde:#15803d; --c-verde-bg:#e6f6ec;
+  --c-ambar:#b45309; --c-ambar-bg:#fdf1dc;
+  --c-celeste:#0e7490; --c-celeste-bg:#e2f5fa;
+  --c-violeta:#6d28d9; --c-violeta-bg:#efe9fd;
+  --font:"Segoe UI Variable Text","Segoe UI",Inter,system-ui,sans-serif;
+  --font-display:"Segoe UI Variable Display","Segoe UI","Inter Display",Inter,system-ui,sans-serif;
+  --mono:"Cascadia Code",Consolas,"JetBrains Mono",ui-monospace,monospace;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#d9e1e0}
+body{font:400 10.5pt/1.5 var(--font);color:var(--text);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);text-wrap:balance}
+p{margin:0}
+ul{margin:0}
+.i{width:18px;height:18px;flex:none}
+
+.pagina{position:relative;width:210mm;height:297mm;overflow:hidden;background:var(--bg);margin:0 auto;page-break-after:always;break-after:page;padding:15mm 17mm 20mm}
+.pagina:last-child{page-break-after:auto;break-after:auto}
+@media screen{.pagina{margin:10mm auto;box-shadow:0 10px 40px rgba(0,0,0,.18)}}
+.oscura{background:var(--brand-dark);color:var(--on-brand)}
+
+/* Encabezado y pie de cada página */
+.cab{display:flex;align-items:center;justify-content:space-between;margin-bottom:9mm}
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:3mm}
+.area{border:1px solid var(--border);border-radius:12px;padding:3.2mm 3.5mm;background:#fff}
+.area h4{font-size:10.5pt;margin-bottom:2mm}
+.area dl{margin:0;display:grid;gap:.8mm}
+.area dt{font:700 7pt var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.area dd{margin:0 0 .8mm;font-size:8.5pt;color:var(--text-2);line-height:1.4}
+.area dt.v{color:var(--c-verde)} .area dt.c{color:var(--c-ambar)} .area dt.a{color:var(--c-celeste)}
+.cab .logo{height:22px;width:auto}
+.cab span{font:600 8pt var(--mono);color:var(--text-3);letter-spacing:.04em}
+.oscura .cab span{color:var(--on-brand-2)}
+.pie{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:8pt var(--mono);color:var(--text-3);border-top:1px solid var(--border);padding-top:3mm}
+.oscura .pie{color:var(--on-brand-2);border-color:var(--brand-line)}
+
+.ceja{display:inline-block;font-size:8pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:3mm}
+.oscura .ceja{color:var(--logo-x)}
+.titulo{font-size:25pt;font-weight:800;letter-spacing:-.03em;line-height:1.08;max-width:20ch}
+.bajada{margin-top:4mm;font-size:11.5pt;color:var(--text-2);max-width:60ch}
+.oscura .bajada{color:var(--on-brand-2)}
+.sub{font-size:13pt;font-weight:750;letter-spacing:-.01em;margin:7mm 0 3mm}
+
+/* ---------- Portada ---------- */
+.portada{padding:0}
+.portada::before,.portada::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.portada::before{width:190mm;height:190mm;left:-70mm;top:-80mm;background:radial-gradient(closest-side,rgba(46,224,166,.22),transparent)}
+.portada::after{width:170mm;height:170mm;right:-60mm;bottom:-70mm;background:radial-gradient(closest-side,rgba(245,158,11,.18),transparent)}
+.portada .dentro{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:22mm 20mm 18mm}
+.portada .logo{height:54px;width:auto}
+.portada h1{margin-top:auto;font-size:40pt;font-weight:800;letter-spacing:-.035em;line-height:1.04;max-width:13ch}
+.portada h1 em{font-style:normal;color:var(--logo-x)}
+.portada .bajada{font-size:13.5pt;margin-top:7mm;max-width:44ch}
+.portada .chips{display:flex;flex-wrap:wrap;gap:3mm;margin-top:10mm}
+.chip{display:inline-flex;align-items:center;gap:2mm;padding:2mm 4mm;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font-size:9.5pt;color:var(--on-brand)}
+.chip b{color:var(--logo-x);font-weight:700}
+.portada .fin{margin-top:16mm;padding-top:6mm;border-top:1px solid var(--brand-line);display:flex;justify-content:space-between;font:9pt var(--mono);color:var(--on-brand-2)}
+
+/* ---------- Problemas / qué es ---------- */
+.problemas{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:8mm}
+.problema{padding:5mm;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.problema__dato{font:700 8pt var(--mono);color:var(--text-3)}
+.problema h3{font-size:11.5pt;margin:2mm 0 1.5mm}
+.problema p{font-size:9.5pt;color:var(--text-2)}
+.frase{margin-top:10mm;padding:8mm 9mm;border-radius:16px;background:var(--brand-dark);color:var(--on-brand);position:relative;overflow:hidden}
+.frase::after{content:"";position:absolute;width:110mm;height:110mm;right:-40mm;top:-50mm;border-radius:50%;background:radial-gradient(closest-side,rgba(46,224,166,.22),transparent)}
+.frase .ceja{color:var(--logo-x)}
+.frase p{position:relative;font:700 15pt/1.35 var(--font-display);letter-spacing:-.015em;max-width:38ch}
+.frase p em{font-style:normal;color:var(--logo-x)}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:3mm}
+.tres div{border-top:2px solid var(--accent);padding-top:3mm}
+.tres b{display:block;font:750 11pt var(--font-display);margin-bottom:1mm}
+.tres p{font-size:9.5pt;color:var(--text-2)}
+
+/* ---------- Cómo funciona ---------- */
+.pasos{list-style:none;margin:8mm 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;counter-reset:p}
+.paso{counter-increment:p;padding:4.5mm;border:1px solid var(--border);border-radius:12px;background:var(--surface);display:flex;flex-direction:column;gap:2mm}
+.paso::before{content:counter(p);display:grid;place-items:center;width:8mm;height:8mm;border-radius:50%;background:var(--accent);color:#fff;font:700 10pt var(--font-display)}
+.paso h3{font-size:10.5pt}
+.paso p{font-size:9pt;color:var(--text-2)}
+.paso small{margin-top:auto;font-size:8pt;color:var(--accent);font-weight:600}
+.diagrama{margin-top:9mm;border:1px solid var(--border);border-radius:16px;padding:6mm;background:var(--surface)}
+.diagrama svg{display:block;width:100%;height:auto}
+
+/* ---------- Bloques ---------- */
+.formas{display:grid;grid-template-columns:repeat(3,1fr);gap:4.5mm;margin-top:7mm}
+.forma{border:1px solid var(--border);border-radius:14px;padding:5mm;display:flex;flex-direction:column;gap:2.5mm;background:#fff}
+.icono{display:grid;place-items:center;width:11mm;height:11mm;border-radius:10px}
+.icono .i{width:20px;height:20px}
+.forma h3{font-size:12pt}
+.forma p{font-size:9.3pt;color:var(--text-2)}
+.forma ul{padding-left:4mm;font-size:9pt;color:var(--text-2);display:grid;gap:1mm}
+.forma .ej{margin-top:auto;padding-top:2.5mm;border-top:1px solid var(--border);font-size:8.5pt;color:var(--text-3)}
+.verde{color:var(--c-verde);background:var(--c-verde-bg)}
+.ambar{color:var(--c-ambar);background:var(--c-ambar-bg)}
+.celeste{color:var(--c-celeste);background:var(--c-celeste-bg)}
+.violeta{color:var(--c-violeta);background:var(--c-violeta-bg)}
+
+/* Maqueta de bloque */
+.maqueta{display:grid;grid-template-columns:1fr 1.25fr;gap:6mm;margin-top:6mm;align-items:center}
+.burbuja{padding:4mm 5mm;border-radius:14px 14px 4px 14px;background:var(--surface-2);border:1px solid var(--border);font-size:9.5pt}
+.burbuja b{display:block;font-size:7.5pt;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-bottom:1mm}
+.pasos-ia{display:grid;gap:1mm;margin-top:3mm;font-size:8.5pt;color:var(--accent);font-weight:600}
+.pasos-ia span::before{content:"✓  "}
+.tablero{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(8,33,33,.12);background:#fff}
+.tablero__cab{display:flex;align-items:center;gap:3mm;padding:3mm 4mm;border-bottom:1px solid var(--border);font-size:9.5pt}
+.etiqueta{margin-left:auto;font-size:7pt;font-weight:700;padding:.8mm 2.5mm;border-radius:999px;background:var(--c-ambar-bg);color:#92400e}
+.tablero__cuerpo{padding:4mm;display:grid;gap:3mm}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm}
+.kpi{border:1px solid var(--border);border-radius:8px;padding:2mm 2.5mm}
+.kpi small{display:block;font-size:6.5pt;color:var(--text-3);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.kpi b{font:750 11pt var(--font-display)}
+.barras{display:grid;grid-template-columns:repeat(5,1fr);gap:3mm;align-items:end;height:20mm;border-bottom:1px solid var(--border-strong)}
+.barra{display:flex;gap:1mm;align-items:end;height:100%}
+.barra i{flex:1;border-radius:3px 3px 0 0;background:#a8eadf}
+.barra i+i{background:#0e8175}
+.ejes{display:grid;grid-template-columns:repeat(5,1fr);gap:3mm;font-size:6.5pt;color:var(--text-3);text-align:center;margin-top:-2mm}
+.carga{display:grid;grid-template-columns:1fr 1fr auto;gap:2mm;align-items:end;padding:2.5mm;border:1px dashed var(--border-strong);border-radius:8px;background:var(--surface)}
+.carga label{font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);display:grid;gap:.8mm}
+.carga span.entrada{display:block;padding:1.3mm 2mm;border:1px solid var(--border-strong);border-radius:5px;background:#fff;font-size:8pt;color:var(--text);text-transform:none;letter-spacing:0;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:1.5mm 3.5mm;border-radius:7px;background:var(--cta);color:var(--cta-text);font-weight:700;font-size:8pt}
+.tablero__pie{display:flex;justify-content:space-between;align-items:center;padding:2.5mm 4mm;background:var(--surface);border-top:1px solid var(--border);font-size:7.5pt;color:var(--text-3)}
+
+/* ---------- Circuito entre áreas ---------- */
+.circuito{margin-top:6mm;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.etapa{padding:4mm 4.5mm;display:flex;flex-direction:column;gap:2.5mm;position:relative}
+.etapa+.etapa{border-left:1px solid var(--border)}
+.etapa__area{display:flex;align-items:center;gap:2mm;font:750 10.5pt var(--font-display)}
+.etapa__area i{width:3mm;height:3mm;border-radius:50%}
+.etapa p{font-size:9pt;color:var(--text-2)}
+.etapa .que{font-size:8pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+.tarjeta{border:1px solid var(--border);border-radius:9px;padding:2.5mm 3mm;font-size:8.5pt;background:#fff;display:grid;gap:.5mm}
+.tarjeta span{color:var(--text-3);font-size:7.5pt}
+.tarjeta.pend{border-style:dashed;background:transparent}
+.estado{display:flex;justify-content:space-between;align-items:center;padding:3.5mm 5mm;background:var(--surface);border-bottom:1px solid var(--border);grid-column:1/-1;font-size:9.5pt}
+.estado b{font-weight:700}
+.estado span{font-size:7.5pt;font-weight:700;padding:.8mm 3mm;border-radius:999px;background:var(--c-ambar-bg);color:#92400e}
+.beneficios{display:grid;grid-template-columns:repeat(2,1fr);gap:3mm;margin-top:3mm}
+.beneficio{display:flex;gap:3mm;padding:3.2mm 4mm;border-radius:12px;background:var(--accent-subtle);border:1px solid var(--accent-soft)}
+.beneficio .i{color:var(--accent);margin-top:.5mm}
+.beneficio b{display:block;font-size:10pt;margin-bottom:.5mm}
+.beneficio p{font-size:9pt;color:var(--text-2)}
+
+/* ---------- Catálogo de funcionalidades ---------- */
+.catalogo{display:grid;grid-template-columns:repeat(2,1fr);gap:4mm;margin-top:6mm}
+.grupo{border:1px solid var(--border);border-radius:12px;padding:4mm 4.5mm;background:#fff;break-inside:avoid}
+.grupo__cab{display:flex;align-items:center;gap:2.5mm;margin-bottom:2.5mm}
+.grupo__cab .icono{width:8mm;height:8mm;border-radius:7px}
+.grupo__cab .icono .i{width:15px;height:15px}
+.grupo h3{font-size:11pt}
+.grupo ul{list-style:none;padding:0;display:grid;gap:1.6mm}
+.grupo li{font-size:8.9pt;color:var(--text-2);padding-left:4mm;position:relative;line-height:1.4}
+.grupo li::before{content:"";position:absolute;left:0;top:1.9mm;width:1.6mm;height:1.6mm;border-radius:50%;background:var(--accent)}
+.grupo li b{color:var(--text);font-weight:650}
+
+/* ---------- Seguridad ---------- */
+.controles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--brand-line);border:1px solid var(--brand-line);border-radius:14px;overflow:hidden;margin-top:8mm}
+.control{background:var(--brand-surface);padding:5mm;display:flex;flex-direction:column;gap:2mm}
+.control h3{display:flex;align-items:center;gap:2.5mm;font-size:10.5pt;color:var(--on-brand)}
+.control h3 .i{color:var(--logo-x)}
+.control p{font-size:9pt;color:var(--on-brand-2)}
+.permisos{margin-top:8mm;display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+.permiso{border:1px solid var(--brand-line);border-radius:12px;padding:4mm}
+.permiso b{display:block;font-size:10pt;color:var(--on-brand);margin-bottom:1mm}
+.permiso p{font-size:8.8pt;color:var(--on-brand-2)}
+.permiso .tag{display:inline-block;margin-bottom:2mm;font:700 7.5pt var(--mono);color:var(--brand-dark);background:var(--logo-x);padding:.6mm 2.2mm;border-radius:999px}
+
+/* ---------- Alcance ---------- */
+.alcance{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:7mm}
+.col{border-radius:14px;padding:5mm}
+.col.si{background:var(--accent-subtle);border:1px solid var(--accent-soft)}
+.col.no{background:var(--surface);border:1px solid var(--border)}
+.col h3{font-size:11.5pt;margin-bottom:3mm;display:flex;align-items:center;gap:2mm}
+.col ul{list-style:none;padding:0;display:grid;gap:2mm}
+.col li{font-size:9.2pt;color:var(--text-2);display:flex;gap:2mm}
+.col li::before{flex:none;font-weight:800}
+.col.si li::before{content:"✓";color:var(--accent)}
+.col.no li::before{content:"–";color:var(--text-3)}
+.fuentes{display:flex;flex-wrap:wrap;gap:2.5mm;margin-top:3mm}
+.fuente{padding:1.8mm 3.5mm;border:1px solid var(--border-strong);border-radius:999px;font-size:9pt;font-weight:600;background:#fff}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:4mm}
+.rol{border-top:2px solid var(--accent);padding-top:3mm}
+.rol h3{font-size:11pt;margin-bottom:2mm}
+.rol ul{padding-left:4mm;font-size:9pt;color:var(--text-2);display:grid;gap:1mm}
+
+/* ---------- Preguntas y cierre ---------- */
+.preguntas{display:grid;grid-template-columns:1fr 1fr;gap:4mm 6mm;margin-top:6mm}
+.pregunta b{display:block;font:700 10pt var(--font-display);margin-bottom:1mm}
+.pregunta p{font-size:9pt;color:var(--text-2)}
+.cierre{margin-top:9mm;border-radius:18px;background:var(--brand-dark);color:var(--on-brand);padding:8mm 9mm;display:grid;grid-template-columns:1.2fr 1fr;gap:7mm;position:relative;overflow:hidden}
+.cierre::before{content:"";position:absolute;width:120mm;height:120mm;right:-45mm;top:-60mm;border-radius:50%;background:radial-gradient(closest-side,rgba(46,224,166,.2),transparent)}
+.cierre>*{position:relative}
+.cierre h2{font-size:18pt;font-weight:800;letter-spacing:-.03em;line-height:1.12}
+.cierre p{margin-top:3mm;color:var(--on-brand-2);font-size:9.5pt}
+.demo{background:var(--brand-surface);border:1px solid var(--brand-line);border-radius:12px;padding:5mm}
+.demo b{font-size:10pt}
+.demo ol{margin:2mm 0 4mm;padding-left:5mm;color:var(--on-brand-2);font-size:9pt;display:grid;gap:1mm}
+.demo .btn{width:100%;padding:2.5mm;font-size:9.5pt}
+.demo .contacto{margin-top:3mm;text-align:center;font:8.5pt var(--mono);color:var(--on-brand-2)}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. PORTADA ============ -->
+<section class="pagina oscura portada">
+  <div class="dentro">
+    {{LOGO_CLARO}}
+    <h1>Tus datos, tus procesos, tu IA, <em>en un solo lugar.</em></h1>
+    <p class="bajada">datx conecta la IA de tu equipo con los datos reales de la empresa. Cada área arma sus tableros, formularios y circuitos de trabajo en minutos, con la seguridad y el control que la empresa define.</p>
+    <div class="chips">
+      <span class="chip"><b>●</b> Sin programar</span>
+      <span class="chip"><b>●</b> Sin instalar nada</span>
+      <span class="chip"><b>●</b> Tus bases no se tocan: solo lectura</span>
+      <span class="chip"><b>●</b> Siempre publica una persona</span>
+    </div>
+    <div class="fin"><span>Presentación para empresas</span><span>datx.com.ar</span></div>
+  </div>
+</section>
+
+<!-- ============ 2. QUÉ ES ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>01 · QUÉ ES DATX</span></div>
+  <span class="ceja">El problema</span>
+  <h2 class="titulo">Hoy, cada reporte o planilla nueva es un proyecto.</h2>
+  <p class="bajada">Las preguntas del negocio cambian todas las semanas. La forma de responderlas, casi nunca.</p>
+  <div class="problemas">
+    <div class="problema"><span class="problema__dato">Semanas</span><h3>Todo pasa por Sistemas</h3><p>Cada reporte nuevo es un pedido, una cola y una reunión para explicar qué se quería ver. Cuando llega, la pregunta ya cambió.</p></div>
+    <div class="problema"><span class="problema__dato">v3_final_FINAL.xlsx</span><h3>Cada área tiene su número</h3><p>Ventas, Finanzas y Dirección calculan la misma métrica de formas distintas, y la reunión se va en discutir cuál está bien.</p></div>
+    <div class="problema"><span class="problema__dato">Copiar y pegar</span><h3>La IA no llega a los datos</h3><p>El equipo ya usa IA, pero para analizar datos de la empresa los exporta a mano, sin control de quién ve qué.</p></div>
+  </div>
+
+  <div class="frase">
+    <span class="ceja">datx en una frase</span>
+    <p>Una plataforma donde cada persona le pide a su IA lo que necesita y obtiene un <em>bloque</em>: un tablero, un formulario o una etapa de un circuito, armado con los datos reales de la empresa y publicado bajo sus reglas.</p>
+  </div>
+
+  <h3 class="sub">Tres ideas para entender datx</h3>
+  <div class="tres">
+    <div><b>Todo es un bloque</b><p>Lo que se arma en datx se llama bloque. Puede mostrar información, recibirla o conectar el trabajo de varias áreas.</p></div>
+    <div><b>Un solo número</b><p>Las métricas y definiciones aprobadas de la empresa quedan guardadas. La IA las usa siempre, así todos ven lo mismo.</p></div>
+    <div><b>Control total</b><p>datx solo lee tus bases, cada persona ve lo que le corresponde y nada se publica sin que un responsable lo revise.</p></div>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>2</span></div>
+</section>
+
+<!-- ============ 3. CÓMO FUNCIONA ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>02 · CÓMO FUNCIONA</span></div>
+  <span class="ceja">Cómo funciona</span>
+  <h2 class="titulo">De la necesidad al bloque publicado, en cuatro pasos.</h2>
+  <p class="bajada">Sin colas en Sistemas, con un solo número para todas las áreas y con la IA trabajando sobre los datos reales.</p>
+  <ol class="pasos">
+    <li class="paso"><h3>Conectamos tus fuentes</h3><p>datx se conecta a las bases de datos y APIs de la empresa con un acceso de solo lectura. Nada se modifica.</p><small>Una sola vez, con tu equipo de Sistemas.</small></li>
+    <li class="paso"><h3>La IA aprende tu base</h3><p>La IA recorre las tablas habilitadas, entiende qué hay en cada una y lo deja documentado como conocimiento de la empresa.</p><small>Sin reuniones de relevamiento.</small></li>
+    <li class="paso"><h3>Pedís el bloque</h3><p>Cualquier persona autorizada describe lo que necesita, en sus palabras. La IA lo arma con datos reales y lo deja como borrador.</p><small>Minutos, no semanas.</small></li>
+    <li class="paso"><h3>Revisás y publicás</h3><p>Un responsable lo mira, lo ajusta si hace falta y lo comparte con las personas o grupos que lo necesitan.</p><small>Siempre decide una persona.</small></li>
+  </ol>
+
+  <div class="diagrama">
+    <svg viewBox="0 0 700 300" font-family="Inter, Segoe UI, sans-serif" aria-label="Las fuentes de la empresa alimentan a datx, que entrega bloques a cada área">
+      <defs>
+        <marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0f766e"/></marker>
+      </defs>
+      <!-- Fuentes -->
+      <text x="20" y="22" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1">TUS FUENTES</text>
+      <g font-size="12" fill="#0f172a">
+        <rect x="20" y="36" width="160" height="40" rx="9" fill="#fff" stroke="#cbd5e1"/><text x="36" y="61">ERP / bases de datos</text>
+        <rect x="20" y="86" width="160" height="40" rx="9" fill="#fff" stroke="#cbd5e1"/><text x="36" y="111">APIs de otros sistemas</text>
+        <rect x="20" y="136" width="160" height="40" rx="9" fill="#fff" stroke="#cbd5e1"/><text x="36" y="161">Excel y CSV adjuntos</text>
+        <rect x="20" y="186" width="160" height="40" rx="9" fill="#fff" stroke="#cbd5e1"/><text x="36" y="211">Datos cargados en datx</text>
+      </g>
+      <text x="20" y="252" font-size="10.5" fill="#0f766e" font-weight="600">Solo lectura sobre tus sistemas</text>
+      <!-- Flechas a datx -->
+      <g stroke="#0f766e" stroke-width="1.6" fill="none" marker-end="url(#fl)">
+        <path d="M182 56 C 220 56, 220 130, 252 130"/>
+        <path d="M182 106 C 215 106, 220 135, 252 135"/>
+        <path d="M182 156 C 215 156, 220 140, 252 140"/>
+        <path d="M182 206 C 220 206, 220 145, 252 145"/>
+      </g>
+      <!-- datx -->
+      <rect x="256" y="40" width="190" height="200" rx="16" fill="#082121"/>
+      <text x="351" y="74" text-anchor="middle" font-size="20" font-weight="800" fill="#f1f7f6">dat<tspan fill="#2ee0a6">x</tspan></text>
+      <g font-size="11" fill="#a9c3c1">
+        <rect x="272" y="90" width="158" height="30" rx="7" fill="#0f3130" stroke="#1d4644"/><text x="284" y="109">Conocimiento del negocio</text>
+        <rect x="272" y="126" width="158" height="30" rx="7" fill="#0f3130" stroke="#1d4644"/><text x="284" y="145">Permisos y auditoría</text>
+        <rect x="272" y="162" width="158" height="30" rx="7" fill="#0f3130" stroke="#1d4644"/><text x="284" y="181">Base propia de datx</text>
+        <rect x="272" y="198" width="158" height="30" rx="7" fill="#0f3130" stroke="#1d4644"/><text x="284" y="217">Alertas y correos</text>
+      </g>
+      <!-- IA -->
+      <rect x="276" y="258" width="150" height="32" rx="16" fill="#efe9fd" stroke="#c4b5fd"/>
+      <text x="351" y="279" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6d28d9">Tu IA, conectada</text>
+      <path d="M351 256 L351 244" stroke="#6d28d9" stroke-width="1.6" marker-end="url(#fl)"/>
+      <!-- Flechas a bloques -->
+      <g stroke="#0f766e" stroke-width="1.6" fill="none" marker-end="url(#fl)">
+        <path d="M448 130 C 480 130, 480 66, 514 66"/>
+        <path d="M448 140 C 480 140, 485 140, 514 140"/>
+        <path d="M448 150 C 480 150, 480 214, 514 214"/>
+      </g>
+      <text x="518" y="22" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1">BLOQUES PARA CADA ÁREA</text>
+      <g font-size="12">
+        <rect x="518" y="40" width="165" height="52" rx="10" fill="#e6f6ec" stroke="#bfe3cb"/><text x="532" y="62" font-weight="700" fill="#15803d">Para ver</text><text x="532" y="80" font-size="10.5" fill="#475569">Tableros e informes</text>
+        <rect x="518" y="114" width="165" height="52" rx="10" fill="#fdf1dc" stroke="#f3d6a3"/><text x="532" y="136" font-weight="700" fill="#b45309">Para cargar</text><text x="532" y="154" font-size="10.5" fill="#475569">Formularios y planillas</text>
+        <rect x="518" y="188" width="165" height="52" rx="10" fill="#e2f5fa" stroke="#b5e2ee"/><text x="532" y="210" font-weight="700" fill="#0e7490">Entre áreas</text><text x="532" y="228" font-size="10.5" fill="#475569">Circuitos y aprobaciones</text>
+      </g>
+      <text x="518" y="268" font-size="10.5" fill="#64748b">Desde la compu, la tablet o el celular</text>
+    </svg>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>3</span></div>
+</section>
+
+<!-- ============ 4. BLOQUES ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>03 · BLOQUES</span></div>
+  <span class="ceja">Bloques</span>
+  <h2 class="titulo">Lo que tu equipo arma en datx se llama bloque.</h2>
+  <p class="bajada">Un bloque responde una necesidad concreta del negocio. Puede mostrar información, generarla o ser una parte de un trabajo entre áreas. Y un mismo bloque puede hacer las tres cosas a la vez.</p>
+  <div class="formas">
+    <div class="forma">
+      <span class="icono verde"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
+      <h3>Bloques que muestran información</h3>
+      <p>Tableros e informes sobre los datos reales de la empresa, siempre actualizados.</p>
+      <ul><li>Indicadores clave (KPIs) con comparación</li><li>Gráficos, tablas y mapas</li><li>Filtros por fecha, región, cliente…</li><li>Descarga en Excel o PDF</li></ul>
+      <p class="ej">Ventas por región, stock, cobranzas, productividad, margen.</p>
+    </div>
+    <div class="forma">
+      <span class="icono ambar"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+      <h3>Bloques que generan información</h3>
+      <p>Formularios y grillas para todo lo que hoy vive en planillas sueltas o en ningún lado.</p>
+      <ul><li>Altas, correcciones y bajas de registros</li><li>Carga en grilla, como en Excel</li><li>Queda guardado quién cargó y cuándo</li><li>Se cruza con los datos de tus sistemas</li></ul>
+      <p class="ej">Presupuestos, objetivos, precios de la competencia, visitas, controles de calidad.</p>
+    </div>
+    <div class="forma">
+      <span class="icono celeste"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/></svg></span>
+      <h3>Bloques que interconectan áreas</h3>
+      <p>Cada área trabaja en su propio bloque, sobre los mismos datos compartidos. Lo que una carga, la otra lo ve.</p>
+      <ul><li>Circuitos de pedidos y aprobaciones</li><li>Avisos por correo entre áreas</li><li>Estado visible para todos</li><li>Cada área solo hace su parte</li></ul>
+      <p class="ej">Reposición, compras, reclamos, aprobaciones de gastos.</p>
+    </div>
+  </div>
+
+  <div class="frase" style="margin-top:9mm">
+    <span class="ceja">La diferencia</span>
+    <p>Un tablero de BI solo muestra. Un bloque de datx <em>muestra, recibe información y conecta áreas</em>, y lo arma la persona que lo necesita.</p>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>4</span></div>
+</section>
+
+<!-- ============ 4b. CON TU IA + EJEMPLOS ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>03 · BLOQUES</span></div>
+  <span class="ceja">Con tu IA</span>
+  <h2 class="titulo">Lo pedís en tus palabras. La IA lo arma con datos reales.</h2>
+  <div class="maqueta">
+    <div>
+      <p class="burbuja"><b>Jefa de cobranzas, a su IA</b>Armame un bloque con las facturas vencidas por cliente, donde cada cobrador anote la fecha en que le prometieron pagar.</p>
+      <div class="pasos-ia">
+        <span>Leyó la definición oficial de “factura vencida”</span>
+        <span>Consultó Cuentas a cobrar (solo lectura)</span>
+        <span>Creó la carga de promesas de pago en datx</span>
+        <span>Guardó el bloque como borrador</span>
+      </div>
+    </div>
+    <div class="tablero">
+      <div class="tablero__cab"><strong>Cobranzas: vencido y promesas de pago</strong><span class="etiqueta">Borrador</span></div>
+      <div class="tablero__cuerpo">
+        <div class="kpis">
+          <div class="kpi"><small>Vencido</small><b>$ 86 M</b></div>
+          <div class="kpi"><small>Clientes</small><b>142</b></div>
+          <div class="kpi"><small>Con promesa</small><b>61%</b> <span style="color:#15803d;font-size:7pt;font-weight:700">▲</span></div>
+        </div>
+        <div class="barras">
+          <div class="barra"><i style="height:92%"></i><i style="height:78%"></i></div>
+          <div class="barra"><i style="height:78%"></i><i style="height:55%"></i></div>
+          <div class="barra"><i style="height:55%"></i><i style="height:34%"></i></div>
+          <div class="barra"><i style="height:40%"></i><i style="height:18%"></i></div>
+          <div class="barra"><i style="height:48%"></i><i style="height:12%"></i></div>
+        </div>
+        <div class="ejes"><span>1–15 d</span><span>16–30 d</span><span>31–60 d</span><span>61–90 d</span><span>+90 d</span></div>
+        <div class="carga">
+          <label>Cliente<span class="entrada">Ferretería Norte SRL</span></label>
+          <label>Promete pagar el<span class="entrada">15/10</span></label>
+          <span class="btn">Guardar</span>
+        </div>
+      </div>
+      <div class="tablero__pie"><span>Lo revisa un responsable antes de publicarlo</span><span class="btn">Publicar</span></div>
+    </div>
+  </div>
+
+  <h3 class="sub">Ejemplos de bloques por área</h3>
+  <div class="areas">
+    <div class="area"><h4>Comercial</h4><dl>
+      <dt class="v">Para ver</dt><dd>Venta neta, pedidos, ticket medio y clientes activos por región y vendedor.</dd>
+      <dt class="c">Para cargar</dt><dd>Objetivos por vendedor, visitas a clientes, precios de la competencia.</dd></dl></div>
+    <div class="area"><h4>Finanzas</h4><dl>
+      <dt class="v">Para ver</dt><dd>Ingresos, margen bruto y variación contra el período anterior y el presupuesto.</dd>
+      <dt class="c">Para cargar</dt><dd>Presupuesto mensual por área, promesas de pago, ajustes.</dd></dl></div>
+    <div class="area"><h4>Operaciones</h4><dl>
+      <dt class="v">Para ver</dt><dd>Volumen procesado, tiempos de ciclo, % en plazo, incidencias abiertas.</dd>
+      <dt class="c">Para cargar</dt><dd>Controles de calidad, novedades de turno, paradas de línea.</dd></dl></div>
+    <div class="area"><h4>Compras y depósito</h4><dl>
+      <dt class="v">Para ver</dt><dd>Stock por sucursal, faltantes, rotación de productos.</dd>
+      <dt class="a">Entre áreas</dt><dd>Circuito de reposición con aviso automático a Compras.</dd></dl></div>
+    <div class="area"><h4>Recursos humanos</h4><dl>
+      <dt class="v">Para ver</dt><dd>Dotación, ausentismo, horas extra por sector.</dd>
+      <dt class="c">Para cargar</dt><dd>Novedades del personal, capacitaciones, evaluaciones.</dd></dl></div>
+    <div class="area"><h4>Dirección</h4><dl>
+      <dt class="v">Para ver</dt><dd>Tablero general con los indicadores de todas las áreas, un solo número por métrica.</dd>
+      <dt class="a">Alertas</dt><dd>Aviso por correo si una venta, margen o stock cruza un límite.</dd></dl></div>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>5</span></div>
+</section>
+
+<!-- ============ 5. ENTRE ÁREAS ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>04 · TRABAJO ENTRE ÁREAS</span></div>
+  <span class="ceja">Interconectar áreas</span>
+  <h2 class="titulo">Bloques que hacen que las áreas trabajen juntas.</h2>
+  <p class="bajada">Un circuito es un conjunto de bloques que comparten datos: cada área tiene el suyo, con lo que necesita ver y hacer. Sin mails ni planillas que van y vienen.</p>
+
+  <div class="circuito">
+    <div class="estado"><b>Ejemplo: Pedido 1042 · Tienda Rosario · 40 auriculares</b><span>Listo para despachar</span></div>
+    <div class="etapa">
+      <div class="etapa__area"><i style="background:var(--c-verde)"></i>1. Ventas lo pide</div>
+      <span class="que">Su bloque</span>
+      <p>Formulario de pedido de reposición, con el stock real de cada sucursal a la vista.</p>
+      <div class="tarjeta"><b>M. Gómez cargó el pedido</b><span>Lunes 9:12</span></div>
+    </div>
+    <div class="etapa">
+      <div class="etapa__area"><i style="background:var(--c-verde)"></i>2. Depósito lo prepara</div>
+      <span class="que">Su bloque</span>
+      <p>Lista de pedidos pendientes. Recibe un correo cuando entra uno nuevo y lo marca como preparado.</p>
+      <div class="tarjeta"><b>J. Ruiz lo marcó como preparado</b><span>Lunes 15:40</span></div>
+    </div>
+    <div class="etapa">
+      <div class="etapa__area"><i style="background:var(--c-ambar)"></i>3. Logística lo despacha</div>
+      <span class="que">Su bloque</span>
+      <p>Pedidos listos para salir, agrupados por destino. Al despachar, Ventas ve el cambio de estado.</p>
+      <div class="tarjeta pend"><b style="color:var(--text-3)">Pendiente</b><span>Logística ya lo ve en su lista</span></div>
+    </div>
+  </div>
+
+  <h3 class="sub">Qué ganan las áreas con un circuito en datx</h3>
+  <div class="beneficios">
+    <div class="beneficio"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Una sola versión de cada dato</b><p>Lo que carga un área queda en una base compartida y le aparece a la siguiente al instante.</p></div></div>
+    <div class="beneficio"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg><div><b>Avisos automáticos</b><p>Un botón “Avisar a Compras”, un correo al guardar o una alerta cuando algo pasa un límite.</p></div></div>
+    <div class="beneficio"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div><b>Cada uno hace su parte</b><p>Los permisos definen quién puede ver y quién puede cargar en cada bloque del circuito.</p></div></div>
+    <div class="beneficio"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><div><b>Trazabilidad</b><p>Cada registro guarda quién lo creó, quién lo modificó y cuándo.</p></div></div>
+  </div>
+
+  <h3 class="sub">Otros circuitos que se arman igual</h3>
+  <div class="tres">
+    <div><b>Compras</b><p>Un área pide, Compras cotiza, Finanzas aprueba. Cada paso, en su bloque.</p></div>
+    <div><b>Reclamos</b><p>Atención al cliente registra, Calidad analiza y el área responsable cierra el caso.</p></div>
+    <div><b>Presupuesto vs. real</b><p>Cada gerente carga su presupuesto y Dirección lo ve cruzado con las ventas del ERP.</p></div>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>6</span></div>
+</section>
+
+<!-- ============ 6. TODAS LAS FUNCIONALIDADES ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>05 · FUNCIONALIDADES</span></div>
+  <span class="ceja">Todo lo que incluye</span>
+  <h2 class="titulo">Todas las funcionalidades de datx.</h2>
+  <div class="catalogo">
+    <div class="grupo">
+      <div class="grupo__cab"><span class="icono celeste"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></span><h3>Conexión a tus datos</h3></div>
+      <ul>
+        <li><b>Bases de datos:</b> PostgreSQL, SQL Server y MongoDB.</li>
+        <li><b>APIs</b> de otros sistemas; datx resuelve la autenticación y la paginación.</li>
+        <li><b>Archivos adjuntos</b> Excel (xlsx, xls), CSV y texto. Se reemplazan por una versión nueva y el bloque se actualiza solo.</li>
+        <li><b>Base propia de datx</b> para los datos que no están en ningún sistema.</li>
+        <li><b>Cruce de fuentes:</b> un mismo bloque combina datos del ERP, de un Excel y de la base propia.</li>
+      </ul>
+    </div>
+    <div class="grupo">
+      <div class="grupo__cab"><span class="icono verde"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><h3>Visualización</h3></div>
+      <ul>
+        <li><b>Indicadores (KPIs)</b> con comparación contra otro período.</li>
+        <li><b>Gráficos:</b> barras, barras apiladas, líneas, áreas, torta, dona, dispersión y gráficos a medida.</li>
+        <li><b>Tablas</b> ordenables y paginadas; <b>tablas avanzadas</b> con filtro por columna, agrupación, totales y columnas fijas.</li>
+        <li><b>Mapas</b> por país y textos con formato (procedimientos, notas).</li>
+      </ul>
+    </div>
+    <div class="grupo">
+      <div class="grupo__cab"><span class="icono ambar"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><h3>Carga de información</h3></div>
+      <ul>
+        <li><b>Formularios</b> con campos de texto, números, fechas y listas desplegables con búsqueda.</li>
+        <li><b>Edición en grilla:</b> se corrige el dato directamente en la celda, como en Excel.</li>
+        <li><b>Alta, modificación y baja</b> de registros, con confirmación antes de borrar.</li>
+        <li><b>Registro automático</b> de quién cargó o modificó cada dato y cuándo.</li>
+        <li><b>Tablas compartidas o privadas</b> entre bloques.</li>
+      </ul>
+    </div>
+    <div class="grupo">
+      <div class="grupo__cab"><span class="icono violeta"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span><h3>Automatización y avisos</h3></div>
+      <ul>
+        <li><b>Correos desde el bloque:</b> un botón “Avisar a Compras” o un aviso al guardar, a usuarios, grupos o roles de la empresa.</li>
+        <li><b>Alertas programadas:</b> “avisame si las ventas bajan de X” o “todos los días a las 8 si hay stock bajo el mínimo”.</li>
+        <li>Frecuencia desde cada 15 minutos hasta diaria; avisa cuando la condición <b>empieza</b> a cumplirse, sin repetir.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>7</span></div>
+</section>
+
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>05 · FUNCIONALIDADES</span></div>
+  <span class="ceja">Todo lo que incluye (continuación)</span>
+  <h2 class="titulo">La IA, la experiencia de uso y cómo se comparte.</h2>
+  <div class="catalogo">
+    <div class="grupo" style="grid-column:1/-1">
+      <div class="grupo__cab"><span class="icono violeta"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></span><h3>Inteligencia artificial y conocimiento del negocio</h3></div>
+      <ul style="grid-template-columns:1fr 1fr;column-gap:6mm">
+        <li><b>Tu IA, conectada:</b> cada persona conecta su asistente (por ejemplo, Claude) desde “Conectar mi IA”, con sus mismos permisos.</li>
+        <li><b>Pedidos en lenguaje natural:</b> la IA arma, prueba y ajusta el bloque con los datos reales.</li>
+        <li><b>Conocimiento de la empresa:</b> métricas, definiciones y consultas aprobadas que la IA usa siempre.</li>
+        <li><b>Aprende de las correcciones:</b> lo que alguien aclara queda propuesto para la próxima vez.</li>
+        <li><b>Documenta tu base:</b> la IA describe tablas y columnas y esas descripciones quedan para todos.</li>
+        <li><b>Análisis a demanda:</b> preguntas puntuales sobre los datos, sin necesidad de armar un bloque.</li>
+        <li><b>Borradores con vista previa:</b> se itera sobre el mismo bloque hasta que quede bien.</li>
+        <li><b>Cambios rápidos:</b> pedir un ajuste (un título, un color, un filtro nuevo) toma segundos.</li>
+      </ul>
+    </div>
+    <div class="grupo">
+      <div class="grupo__cab"><span class="icono celeste"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg></span><h3>Exportar y compartir</h3></div>
+      <ul>
+        <li><b>Descargas</b> en Excel, CSV, PDF, Word y texto; el bloque completo como imagen o PDF.</li>
+        <li><b>Compartir</b> con personas o grupos, en modo lectura o lectura y escritura.</li>
+        <li><b>Vistas guardadas:</b> combinaciones de filtros con nombre, propias o para todos.</li>
+      </ul>
+    </div>
+    <div class="grupo">
+      <div class="grupo__cab"><span class="icono verde"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><h3>Experiencia de uso</h3></div>
+      <ul>
+        <li><b>Filtros</b> por fecha, período, región, cliente…; datx recuerda los últimos de cada usuario.</li>
+        <li>Funciona en <b>compu, tablet y celular</b>, desde el navegador; tema <b>claro y oscuro</b>.</li>
+        <li><b>Editar textos</b> (títulos, etiquetas, mensajes) desde el portal, sin tocar el bloque.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="frase" style="margin-top:8mm">
+    <span class="ceja">Sin desarrollos a medida</span>
+    <p>Todo esto viene incluido en la plataforma. Cada bloque nuevo usa las mismas piezas, por eso <em>se arma en minutos</em> y se ve igual que el resto.</p>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>8</span></div>
+</section>
+
+<!-- ============ 7. SEGURIDAD ============ -->
+<section class="pagina oscura">
+  <div class="cab">{{LOGO_CLARO_CHICO}}<span>06 · SEGURIDAD</span></div>
+  <span class="ceja">Seguridad y control</span>
+  <h2 class="titulo">Tus datos, bajo tus reglas.</h2>
+  <p class="bajada">La IA trabaja dentro de las reglas que define la empresa. Estos controles vienen de fábrica y no se pueden apagar.</p>
+  <div class="controles">
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>Solo lectura</h3><p>datx consulta tus bases, nunca las modifica. Lo que se carga a mano va a una base propia, separada de tus sistemas.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Datos sensibles fuera</h3><p>Elegís qué tablas y columnas se exponen. Lo que no está habilitado no existe para la IA ni para nadie.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Publica una persona</h3><p>La IA arma borradores. Ningún bloque llega a otros usuarios sin que un responsable lo revise y lo publique.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Permisos por persona y grupo</h3><p>Cada bloque se comparte con quien corresponde. Lo que una persona no puede ver, su IA tampoco.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Registro de cada acción</h3><p>Quién abrió qué, qué consultó la IA, quién cargó cada dato y quién publicó cada cambio. Auditable en cualquier momento.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Acceso con cuenta de empresa</h3><p>Las personas entran con su cuenta corporativa. Cuando alguien se va, pierde el acceso a todo.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Consultas validadas</h3><p>Cada consulta se revisa al guardar y al publicar: solo lectura, solo tablas habilitadas y sin funciones peligrosas.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Bloques aislados</h3><p>Cada bloque corre en un entorno cerrado: no puede conectarse a internet ni enviar datos fuera de datx.</p></div>
+    <div class="control"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>Correos solo internos</h3><p>Los avisos y alertas se envían únicamente a usuarios de la empresa, con textos fijados de antemano.</p></div>
+  </div>
+
+  <h3 class="sub">Tres niveles de acceso en cada bloque</h3>
+  <div class="permisos">
+    <div class="permiso"><span class="tag">LECTURA</span><b>Ve el bloque</b><p>Consulta tableros, aplica filtros y descarga lo que tiene permitido ver.</p></div>
+    <div class="permiso"><span class="tag">LECTURA Y ESCRITURA</span><b>Además, carga datos</b><p>Completa formularios y edita registros del bloque. No puede cambiar su diseño.</p></div>
+    <div class="permiso"><span class="tag">PROPIETARIO</span><b>Diseña y publica</b><p>Es el único (junto con los administradores) que cambia el bloque y decide con quién se comparte.</p></div>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>9</span></div>
+</section>
+
+<!-- ============ 8. ALCANCE ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>07 · ALCANCE</span></div>
+  <span class="ceja">Alcance</span>
+  <h2 class="titulo">Qué hace datx y qué no.</h2>
+  <p class="bajada">Para que sepas exactamente qué esperar desde el primer día.</p>
+  <div class="alcance">
+    <div class="col si">
+      <h3>datx sí</h3>
+      <ul>
+        <li>Lee los datos de tus sistemas y los muestra en tableros siempre actualizados.</li>
+        <li>Guarda en su propia base la información que hoy está en planillas.</li>
+        <li>Combina en un mismo bloque datos de distintas fuentes y archivos.</li>
+        <li>Conecta el trabajo de varias áreas con bloques que comparten datos.</li>
+        <li>Avisa por correo y dispara alertas automáticas a gente de la empresa.</li>
+        <li>Permite que cualquier persona autorizada arme bloques con su IA, sin programar.</li>
+        <li>Deja registro de quién hizo qué.</li>
+      </ul>
+    </div>
+    <div class="col no">
+      <h3>datx no</h3>
+      <ul>
+        <li>No modifica ni borra datos de tus sistemas: con ellos trabaja solo en modo lectura.</li>
+        <li>No reemplaza tu ERP ni tus sistemas de gestión: los complementa.</li>
+        <li>No accede a tablas o columnas que la empresa no habilitó.</li>
+        <li>No publica nada por su cuenta: siempre decide una persona.</li>
+        <li>No envía correos a personas de fuera de la empresa.</li>
+        <li>No requiere instalar software en las computadoras.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub">Fuentes que se pueden conectar</h3>
+  <div class="fuentes">
+    <span class="fuente">PostgreSQL</span><span class="fuente">SQL Server</span><span class="fuente">MongoDB</span><span class="fuente">APIs de otros sistemas</span><span class="fuente">Excel (xlsx, xls)</span><span class="fuente">CSV y texto</span><span class="fuente">Base propia de datx</span>
+  </div>
+
+  <h3 class="sub">Para quién es</h3>
+  <div class="roles">
+    <div class="rol"><h3>Dirección</h3><ul><li>Un solo número para cada métrica</li><li>Respuestas el mismo día, no el mes que viene</li><li>Menos horas del equipo armando planillas</li></ul></div>
+    <div class="rol"><h3>Gerentes de área</h3><ul><li>Arman sus bloques sin depender de nadie</li><li>Suman información que hoy no está en ningún sistema</li><li>Coordinan con otras áreas sin mails ni planillas</li></ul></div>
+    <div class="rol"><h3>Sistemas</h3><ul><li>Menos pedidos de reportes en la cola</li><li>Acceso de solo lectura y auditado</li><li>Control centralizado de quién ve qué</li></ul></div>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>10</span></div>
+</section>
+
+<!-- ============ 9. PREGUNTAS Y CIERRE ============ -->
+<section class="pagina">
+  <div class="cab">{{LOGO_OSCURO}}<span>08 · PREGUNTAS FRECUENTES</span></div>
+  <span class="ceja">Preguntas frecuentes</span>
+  <h2 class="titulo">Lo que nos preguntan siempre.</h2>
+  <div class="preguntas">
+    <div class="pregunta"><b>¿Hace falta saber programar?</b><p>No. Le pedís el bloque a tu IA en tus palabras. La IA escribe las consultas, las prueba contra los datos reales y arma el bloque.</p></div>
+    <div class="pregunta"><b>¿En qué se diferencia de un BI tradicional?</b><p>Un BI muestra datos. Un bloque de datx además recibe información y conecta el trabajo entre áreas. Y lo arma la persona que lo necesita, no un especialista.</p></div>
+    <div class="pregunta"><b>¿Dónde funciona datx?</b><p>Es un servicio en la nube. Cada empresa tiene su propio portal y se entra desde el navegador de la compu, la tablet o el celular.</p></div>
+    <div class="pregunta"><b>¿La IA puede modificar o borrar datos de mi empresa?</b><p>No. datx solo ejecuta consultas de lectura sobre tus bases. Lo que se carga a mano se guarda en una base propia de datx.</p></div>
+    <div class="pregunta"><b>¿Qué pasa si la IA entiende mal una métrica?</b><p>La IA consulta primero las definiciones aprobadas. Si igual se equivoca, el responsable lo ve en el borrador, y la corrección queda registrada para que no se repita.</p></div>
+    <div class="pregunta"><b>¿Qué IA necesito?</b><p>Un asistente de IA que se pueda conectar a herramientas externas, como Claude. Cada persona lo conecta desde “Conectar mi IA” en el portal.</p></div>
+    <div class="pregunta"><b>¿Puedo sumar datos que no están en ningún sistema?</b><p>Sí. Con formularios o subiendo un Excel. Y se cruzan con la información de tus bases.</p></div>
+    <div class="pregunta"><b>¿Quién puede cambiar un bloque?</b><p>Solo su propietario y los administradores. Los demás lo usan según el permiso que tengan: lectura, o lectura y escritura.</p></div>
+  </div>
+
+  <div class="cierre">
+    <div>
+      <h2>Mirá cómo se arma un bloque en minutos.</h2>
+      <p>Charlamos sobre cómo trabaja tu empresa y armamos en vivo un ejemplo pensado para tu rubro, de la pregunta al bloque publicado.</p>
+    </div>
+    <div class="demo">
+      <b>Cómo es la demo</b>
+      <ol>
+        <li>Charla sobre tu empresa y cómo trabajan hoy</li>
+        <li>Armado en vivo de un bloque para tu rubro</li>
+        <li>Recorrido por permisos, auditoría y publicación</li>
+      </ol>
+      <span class="btn">Coordinar una demo</span>
+      <p class="contacto">{{CONTACTO}}</p>
+    </div>
+  </div>
+  <div class="pie"><span>datx · Tus datos, tus procesos, tu IA</span><span>datx.com.ar</span></div>
+</section>
+
+</body>
+</html>
