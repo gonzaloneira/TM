@@ -63,12 +63,11 @@ p,ul{margin:0}
 .bloque .ej b{color:var(--ambar-osc);font-weight:700}
 
 /* Pasos */
-.pasos{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
-.pasos::before{content:"";position:absolute;left:3.25mm;right:calc(25% - 1mm);top:3.25mm;border-top:2px dashed var(--ambar)}
-.paso{position:relative;padding-left:8.5mm}
-.paso i{position:absolute;left:0;top:0;display:grid;place-items:center;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--ambar);color:var(--ambar-texto);font:800 9pt var(--font-display);font-style:normal;box-shadow:0 0 0 1.2mm #fff}
-.paso b{position:relative;display:inline-block;font:750 9.3pt var(--font-display);line-height:6.5mm;background:#fff;padding-right:2mm}
-.paso p{margin-top:.6mm;font-size:8pt;color:var(--text-2)}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm}
+.paso{background:var(--ambar-bg);border:1px solid var(--ambar-borde);border-radius:10px;padding:2.8mm 3.2mm 3mm}
+.paso i{display:block;font:800 20pt/1 var(--font-display);font-style:normal;color:var(--ambar);letter-spacing:-.03em;margin-bottom:1.5mm}
+.paso b{display:block;font:750 9.3pt var(--font-display);margin-bottom:.6mm}
+.paso p{font-size:8pt;color:#5b4632}
 
 /* Funcionalidades */
 .funciones{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm}
@@ -154,10 +153,10 @@ p,ul{margin:0}
     <div>
       <div class="rotulo"><span>02</span><h2>Cómo funciona</h2></div>
       <div class="pasos">
-        <div class="paso"><i>1</i><b>Conectamos</b><p>Acceso de solo lectura a tus bases, APIs y archivos Excel.</p></div>
-        <div class="paso"><i>2</i><b>La IA aprende</b><p>Documenta tablas, métricas y definiciones.</p></div>
-        <div class="paso"><i>3</i><b>Pedís el bloque</b><p>En tus palabras; la IA arma un borrador.</p></div>
-        <div class="paso"><i>4</i><b>Revisás y publicás</b><p>Un responsable lo aprueba y lo comparte.</p></div>
+        <div class="paso"><i>01</i><b>Conectamos</b><p>Acceso de solo lectura a tus bases, APIs y archivos Excel.</p></div>
+        <div class="paso"><i>02</i><b>La IA aprende</b><p>Documenta tablas, métricas y definiciones.</p></div>
+        <div class="paso"><i>03</i><b>Pedís el bloque</b><p>En tus palabras; la IA arma un borrador.</p></div>
+        <div class="paso"><i>04</i><b>Revisás y publicás</b><p>Un responsable lo aprueba y lo comparte.</p></div>
       </div>
     </div>
 
