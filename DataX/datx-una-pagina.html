@@ -63,12 +63,12 @@ p,ul{margin:0}
 .bloque .ej b{color:var(--ambar-osc);font-weight:700}
 
 /* Pasos */
-.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ambar-borde);background:var(--ambar-bg);border-radius:10px;overflow:hidden}
-.paso{position:relative;padding:2.8mm 3.2mm 2.8mm 11.6mm}
-.paso+.paso{border-left:1px solid var(--ambar-borde)}
-.paso i{position:absolute;left:3.2mm;top:2.8mm;display:grid;place-items:center;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--ambar);color:var(--ambar-texto);font:800 9pt var(--font-display);font-style:normal}
-.paso b{display:block;font:750 9pt var(--font-display);line-height:1.25;padding-top:.6mm}
-.paso p{margin-top:.5mm;font-size:7.9pt;color:#5b4632}
+.pasos{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.pasos::before{content:"";position:absolute;left:3.25mm;right:calc(25% - 1mm);top:3.25mm;border-top:2px dashed var(--ambar)}
+.paso{position:relative;padding-left:8.5mm}
+.paso i{position:absolute;left:0;top:0;display:grid;place-items:center;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--ambar);color:var(--ambar-texto);font:800 9pt var(--font-display);font-style:normal;box-shadow:0 0 0 1.2mm #fff}
+.paso b{position:relative;display:inline-block;font:750 9.3pt var(--font-display);line-height:6.5mm;background:#fff;padding-right:2mm}
+.paso p{margin-top:.6mm;font-size:8pt;color:var(--text-2)}
 
 /* Funcionalidades */
 .funciones{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm}
