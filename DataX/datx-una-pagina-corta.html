@@ -102,7 +102,7 @@ p,ul{margin:0}
 .fuente{padding:.8mm 2.6mm;border:1px solid var(--ambar-borde);background:#fff;border-radius:999px;font-size:7.6pt;font-weight:600}
 
 /* ===== Versión recortada: sin pilares, funcionalidades en una línea, 4 controles de seguridad ===== */
-.hero__cuerpo{display:block;margin-top:7mm}
+.hero__cuerpo{display:block;margin-top:5mm}
 .hero h1{font-size:28pt;max-width:150mm}
 .hero__bajada{font-size:11pt;max-width:140mm;margin-top:4mm}
 .cuerpo{gap:3.5mm}
@@ -112,21 +112,30 @@ p,ul{margin:0}
 .controles{grid-template-columns:repeat(4,1fr)}
 .bloque{padding:3.5mm 4mm;gap:1.6mm}
 .bloque h3{font-size:10.8pt}
-.bloque p{font-size:9pt}
+.bloque p{font-size:8.8pt}
 .bloque .ej{font-size:8.4pt}
 .icono{width:8.5mm;height:8.5mm}
-.pasos{padding:4mm 0}
-.paso i{font-size:22pt}
+.pasos{padding:3.5mm 0}
+.paso i{font-size:19pt}
 .paso b{font-size:10.3pt}
 .paso p{font-size:8.9pt}
-.funcion{padding:3.3mm 4mm}
+.funcion{padding:3mm 3.6mm}
 .funcion h3{font-size:10.3pt}
 .funcion .corto{font-size:9.2pt}
-.seguridad{padding:4mm 5mm}
-.seguridad h2{font-size:13.5pt}
+.seguridad{padding:3.5mm 5mm}
+.seguridad h2{font-size:12.5pt}
 .controles{grid-template-columns:repeat(2,1fr);gap:3mm 6mm}
 .control b{font-size:9.3pt}
 .control span{font-size:8.6pt}
+
+/* Bloques sin tarjeta, separados por líneas verticales */
+.bloques{gap:0}
+.bloque{border:0;border-radius:0;background:transparent;padding:1mm 5mm}
+.bloque:first-child{padding-left:0}
+.bloque:last-child{padding-right:0}
+.bloque+.bloque{border-left:1px solid var(--border)}
+/* Funcionalidades con viñetas, tamaño acorde a esta versión */
+.funcion li{font-size:8.3pt}
 </style>
 </head>
 <body>
@@ -185,12 +194,37 @@ p,ul{margin:0}
     <div>
       <div class="rotulo"><span>03</span><h2>Qué podés hacer</h2></div>
       <div class="funciones">
-        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>Conexión a datos</h3><p class="corto">Bases, APIs y archivos Excel.</p></div>
-        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Visualización</h3><p class="corto">KPIs, gráficos y tablas.</p></div>
-        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Carga de información</h3><p class="corto">Formularios con auditoría.</p></div>
-        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Avisos y alertas</h3><p class="corto">Correos y alertas automáticas.</p></div>
-        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Acceso y permisos</h3><p class="corto">Por persona o por equipo.</p></div>
-        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>IA que conoce tu negocio</h3><p class="corto">Aprende tus definiciones y criterios.</p></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>Conexión a datos</h3><ul>
+          <li><b>PostgreSQL, SQL Server</b> y más</li>
+          <li><b>APIs</b></li><li>Archivos <b>Excel y CSV</b></li>
+          
+          <li><b>Base propia</b> de datx</li>
+          </ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Visualización</h3><ul>
+          <li><b>KPIs</b>, gráficos y tablas</li>
+          
+          <li><b>Filtros</b> guardados</li><li><b>Descargas</b> en Excel y PDF</li>
+          </ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Carga de información</h3><ul>
+          <li><b>Formularios</b></li>
+          <li>Edición en grilla</li><li>Altas, cambios y bajas</li>
+          
+          <li><b>Auditoría</b> de cada carga</li>
+          </ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Avisos y alertas</h3><ul>
+          <li><b>Correos</b> desde el bloque: “Avisar a Compras”</li>
+          <li><b>Alertas:</b> “si el stock baja del mínimo”</li>
+          
+          </ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Acceso y permisos</h3><ul>
+          <li><b>Compartir</b> con personas o equipos</li>
+          <li>Para ver o para cargar datos</li>
+          <li>Desde compu, tablet o celular</li></ul></div>
+        <div class="funcion"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>IA que conoce tu negocio</h3><ul>
+          <li><b>Tu IA conectada</b></li>
+          <li>Aprende tus definiciones y criterios</li>
+          <li>Le pedís bloques en tus palabras</li>
+          </ul></div>
       </div>
     </div>
 
