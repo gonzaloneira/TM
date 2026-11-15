@@ -65,58 +65,58 @@ body.intro #contact{bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 @media (prefers-reduced-motion:reduce){#card,#hint,#load{transition:none}}
 </style>
 
-<canvas id="c" tabindex="0" aria-label="3D walkthrough of the home"></canvas>
+<canvas id="c" tabindex="0" aria-label="Recorrido 3D de la casa"></canvas>
 <img id="snap" alt="">
 <div id="brand"><h1 id="bName"></h1><p id="bAddr"></p></div>
-<div id="hint" style="opacity:0"><b>Click the view</b> to look around, <b>W A S D</b> to walk, <b>Shift</b> to go faster, <b>Esc</b> to release the mouse.</div>
+<div id="hint" style="opacity:0"><b>Hacé clic en la vista</b> para mirar, <b>W A S D</b> para caminar, <b>Shift</b> para ir más rápido, <b>Esc</b> para soltar el mouse.</div>
 <div id="card" role="status" aria-live="polite"><h2 id="cn"></h2><p class="sz" id="cs"></p><p class="pt" id="cp"></p></div>
 <div id="dock"><div class="in">
-  <button class="primary" id="bTour">Start tour</button>
-  <button id="bView">Dollhouse view</button>
-  <div class="seg" role="group" aria-label="Interior style">
-    <button id="sModern" data-style="modern" aria-pressed="true">Modern</button>
-    <button id="sScandi" data-style="scandi" aria-pressed="false">Scandinavian</button>
-    <button id="sLux" data-style="lux" aria-pressed="false">Warm luxury</button>
+  <button class="primary" id="bTour">Iniciar recorrido</button>
+  <button id="bView">Vista maqueta</button>
+  <div class="seg" role="group" aria-label="Estilo interior">
+    <button id="sModern" data-style="modern" aria-pressed="false">Moderno</button>
+    <button id="sScandi" data-style="scandi" aria-pressed="true">Escandinavo</button>
+    <button id="sLux" data-style="lux" aria-pressed="false">Lujo cálido</button>
   </div>
-  <div class="time"><label for="tod">Time</label><input id="tod" type="range" min="6" max="23" step="0.02" value="10.5"><output id="todOut" for="tod">10:30 AM</output></div>
-  <div class="seg" id="levels" role="group" aria-label="Floor level" hidden></div>
-  <button id="bMusic" aria-pressed="false">Music off</button>
-  <button id="bContact">Contact</button>
-  <button id="bMore" aria-expanded="false">Options</button>
+  <div class="time"><label for="tod">Hora</label><input id="tod" type="range" min="6" max="23" step="0.02" value="10.5"><output id="todOut" for="tod">10:30</output></div>
+  <div class="seg" id="levels" role="group" aria-label="Planta" hidden></div>
+  <button id="bMusic" aria-pressed="false">Música: no</button>
+  <button id="bContact">Contacto</button>
+  <button id="bMore" aria-expanded="false">Opciones</button>
 </div></div>
 <div id="joy" hidden aria-hidden="true"><div id="knob"></div></div>
 <div id="welcome"><div class="w-in">
-  <p class="eyebrow">3D walkthrough · pre-construction</p>
+  <p class="eyebrow">Recorrido 3D · en pozo</p>
   <h1 id="wName"></h1>
   <p class="addr" id="wAddr"></p>
   <p class="price" id="wPrice"></p>
-  <p class="facts">2 bedrooms · 3 baths · quincho with grill · covered parking for 2</p>
-  <div class="w-btns"><button class="primary" id="wStart">Start the tour</button><button id="wFree">Walk around freely</button><button id="wContact">Contact</button></div>
+  <p class="facts">2 dormitorios · 3 baños · quincho con parrilla · cochera cubierta para 2 autos</p>
+  <div class="w-btns"><button class="primary" id="wStart">Iniciar el recorrido</button><button id="wFree">Recorrer libremente</button><button id="wContact">Contacto</button></div>
 </div></div>
-<div id="contact" role="dialog" aria-label="Contact" hidden>
-  <p class="lbl">Ask about this home</p><p id="ctName"></p><p id="ctPhone"></p>
-  <div class="row"><a id="ctCall">Call</a><button id="ctCopy">Copy number</button><button id="ctClose">Close</button></div>
+<div id="contact" role="dialog" aria-label="Contacto" hidden>
+  <p class="lbl">Consultá por esta casa</p><p id="ctName"></p><p id="ctPhone"></p>
+  <div class="row"><a id="ctCall">Llamar</a><button id="ctCopy">Copiar número</button><button id="ctClose">Cerrar</button></div>
 </div>
-<div id="load">Building the house…</div>
+<div id="load">Construyendo la casa…</div>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
 (function(){
 'use strict';
-/* ====== EDIT THESE: what the client sees on the welcome screen and contact card ====== */
-const INFO={project:'Casa Quincho',address:'[Street address, city]',price:'[Price]',agent:'[Your name]',phone:'[Your phone]'};
+/* ====== EDITAR: lo que ve el cliente en la bienvenida y en la tarjeta de contacto ====== */
+const INFO={project:'Casa Quincho',address:'[Dirección, ciudad]',price:'[Precio]',agent:'[Tu nombre]',phone:'[Tu teléfono]'};
 /* One entry per floor. The level switch only appears when there is more than one. */
-const LEVELS=[{name:'Ground floor'}];
+const LEVELS=[{name:'Planta baja'}];
 const $=id=>document.getElementById(id);
 document.body.classList.add('intro');
 $('wName').textContent=$('bName').textContent=INFO.project;$('wAddr').textContent=$('bAddr').textContent=INFO.address;$('wPrice').textContent=INFO.price;$('ctName').textContent=INFO.agent;$('ctPhone').textContent=INFO.phone;
 {const d=INFO.phone.replace(/[^+\d]/g,'');if(d.length>5)$('ctCall').href='tel:'+d;else $('ctCall').hidden=true}
-if(!window.THREE){$('load').textContent='The 3D library could not load. Check your internet connection and reload.';return;}
+if(!window.THREE){$('load').textContent='No se pudo cargar la librería 3D. Revisá tu conexión a internet y recargá la página.';return;}
 const T=THREE,H=2.6,PI=Math.PI;
 const canvas=$('c');
 let renderer;
 try{renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});}
-catch(e){$('load').textContent='This browser could not start WebGL, so the 3D tour cannot run here.';return;}
+catch(e){$('load').textContent='Este navegador no pudo iniciar WebGL, así que el recorrido 3D no puede funcionar acá.';return;}
 const PHONE=matchMedia('(pointer:coarse)').matches,DPR=window.devicePixelRatio||1;
 renderer.setPixelRatio(Math.min(DPR,PHONE?2:1.5));
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
@@ -567,23 +567,23 @@ function applyTime(h){let i=0;while(i<KF.length-2&&h>=KF[i+1][0])i++;const a=KF[
  stars.material.opacity=sstep(19.9,21,h);
  envU.top.value.copy(skyU.top.value).lerp(cA.set('#ffffff'),.7*(1-lampF));envU.hor.value.copy(skyU.hor.value).lerp(cA.set('#ffffff'),.45*(1-lampF)).lerp(cA.set('#ffd6a6'),lampF*.75);envU.gain.value=lerp(lerp(a[5],b[5],t)*1.05,.3,lampF*.8);
  shadowDirty=true;envDirty=true;locDirty=true;locAt=performance.now();
- const hh=Math.floor(h),mm=Math.floor((h-hh)*60/5)*5;$('todOut').textContent=((hh+11)%12+1)+':'+String(mm).padStart(2,'0')+(hh>=12?' PM':' AM')}
+ const hh=Math.floor(h),mm=Math.floor((h-hh)*60/5)*5;$('todOut').textContent=hh+':'+String(mm).padStart(2,'0')+' h'}
 
 /* ---------- rooms + tour ---------- */
 const SQ=10.7639;
 const ROOMS=[
- ['Entry foyer',1.70*1.70,'A recessed, private entry with a glazed side panel that pulls daylight inside.'],
- ['Living & dining',6.71*6.60,'Eighteen feet of patio glazing, a fireplace and a table for eight in one open room.'],
- ['Kitchen',2.75*6.60,'A ten-foot stone island with four seats, facing the living room and the patio.'],
- ['Laundry & pantry',2.80*1.60+1.30*1.60,'A service wing with its own door to the carport, so groceries skip the living room.'],
- ['Quincho',3.90*6.90,'A glass-walled grill room with a built-in parrilla, one sliding door from the kitchen.'],
- ['Quincho bath',2.40*1.40,'Guests at the grill never need to cross the house.'],
- ['Hall & stair',2.81*6.61,'An open-tread stair rises beside a glazed internal patio that brings daylight into the middle of the house.'],
- ['Primary bedroom',3.90*4.05,'A window seat over the garden planter, two walls of wardrobe and its own bath.'],
- ['En-suite bath',1.20*2.52,'A walk-in shower, reached directly from the bedroom.'],
- ['Storage room',1.20*2.13,'A full walk-in store off the hall, with a window of its own.'],
- ['Family bath',1.20*2.50,'A full-length tub under a daylight window.'],
- ['Bedroom 2',3.80*3.70,'Twin street-side windows and a full wall of built-in wardrobes.']];
+ ['Hall de entrada',1.70*1.70,'Un ingreso retirado y privado, con un paño de vidrio lateral que deja entrar la luz.'],
+ ['Estar comedor',6.71*6.60,'Más de 5 metros de ventanal al patio, hogar y mesa para ocho en un solo ambiente.'],
+ ['Cocina',2.75*6.60,'Isla de piedra de 3 metros con cuatro banquetas, de frente al estar y al patio.'],
+ ['Lavadero y despensa',2.80*1.60+1.30*1.60,'Sector de servicio con puerta propia a la cochera: las compras no pasan por el estar.'],
+ ['Quincho',3.90*6.90,'Quincho vidriado con parrilla, a una puerta corrediza de la cocina.'],
+ ['Baño del quincho',2.40*1.40,'Los invitados al asado no necesitan cruzar la casa.'],
+ ['Hall y escalera',2.81*6.61,'La escalera sube junto a un patio interno vidriado que lleva luz natural al centro de la casa.'],
+ ['Dormitorio principal',3.90*4.05,'Banco bajo la ventana redonda al jardín, dos frentes de placard y baño en suite.'],
+ ['Baño en suite',1.20*2.52,'Ducha a nivel, con acceso directo desde el dormitorio.'],
+ ['Guardado',1.20*2.13,'Un cuarto de guardado completo sobre el hall, con ventana propia.'],
+ ['Baño',1.20*2.50,'Bañera completa bajo una ventana con luz natural.'],
+ ['Dormitorio 2',3.80*3.70,'Dos ventanas al frente y una pared entera de placares.']];
 const TOTAL=ROOMS.reduce((s,r)=>s+r[1],0);
 const PATH=[[5.0,21.6],[4.86,18.6],[4.84,17.5],[5.1,16.75,0,[5.6,14.6]],[5.25,15.1,1,[8.3,11.7]],[7.9,14.75],[10.4,14.8],[12.66,14.85,2,[12.62,11.2]],[10.44,14.9],[10.44,16.42],[11.75,16.42,3,[13.2,17.2]],[10.44,16.42],[10.44,14.9],[10.45,9.9],[10.3,9.27],[10.45,8.0],[10.5,6.6],[10.75,5.95,4,[12.4,3.2]],[10.45,7.5],[10.62,8.87,5,[13.1,8.5]],[10.3,9.27],[10.3,10.15],[5.0,10.1,6,[2.9,12.3]],[1.9,9.8],[1.9,8.9],[1.62,8.15,7,[3.3,6.3]],[1.06,8.2],[1.02,8.95,8,[.85,10.9]],[1.06,8.2],[1.9,8.25],[1.9,9.8],[1.9,12.98,9,[.5,12.2]],[1.9,15.58],[1.12,15.52,10,[.8,13.8]],[1.9,15.58],[1.9,16.86],[2.5,16.95],[2.95,17.35,11,[1.0,18.8]],[2.5,16.95],[1.9,16.86],[1.9,15.5],[3.3,15.55]];
 const card=$('card');function showCard(n,s,p){$('cn').textContent=n;$('cs').textContent=s;$('cp').textContent=p;card.classList.add('on')}function hideCard(){card.classList.remove('on')}
@@ -594,21 +594,21 @@ const doll={az:.0,pol:.6,dist:30,tgt:new T.Vector3(7,0,13.2)};
 function dollPose(outP,outQ){const sp=Math.sin(doll.pol),cp=Math.cos(doll.pol);outP.set(doll.tgt.x+doll.dist*sp*Math.sin(doll.az),doll.dist*cp,doll.tgt.z+doll.dist*sp*Math.cos(doll.az));tmpM.lookAt(outP,doll.tgt,UP);outQ.setFromRotationMatrix(tmpM)}
 const tmpM=new T.Matrix4(),UP=new T.Vector3(0,1,0),qA=new T.Quaternion(),qB=new T.Quaternion(),pA=new T.Vector3(),pB=new T.Vector3(),eul=new T.Euler(0,0,0,'YXZ');
 let trans=null,introT=0;const touchy=matchMedia('(pointer:coarse)').matches||'ontouchstart' in window;
-if(touchy)$('hint').innerHTML='<b>Drag</b> to look around. Use the <b>round pad</b> to walk.';
+if(touchy)$('hint').innerHTML='<b>Arrastrá</b> para mirar. Usá el <b>círculo</b> para caminar.';
 function leaveIntro(after){document.body.classList.remove('intro');$('welcome').hidden=true;$('contact').hidden=true;resize();pos.set(PATH[0][0],EYE,PATH[0][1]);yaw=0;pitch=-.03;pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur:3,to:'walk',fromIntro:true,after};mode='trans'}
 function hintOn(){const h=$('hint');h.style.opacity=1;setTimeout(()=>h.style.opacity=0,8000)}
-function toDoll(dur=2.6,after){pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur,to:'doll',after};mode='trans';if(document.pointerLockElement)document.exitPointerLock();$('bView').textContent='Walk inside';$('hint').style.opacity=0}
-function toWalk(dur=2.2){pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur,to:'walk'};mode='trans';$('bView').textContent='Dollhouse view';hideCard()}
+function toDoll(dur=2.6,after){pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur,to:'doll',after};mode='trans';if(document.pointerLockElement)document.exitPointerLock();$('bView').textContent='Caminar adentro';$('hint').style.opacity=0}
+function toWalk(dur=2.2){pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur,to:'walk'};mode='trans';$('bView').textContent='Vista maqueta';hideCard()}
 const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 /* tour */
 let tour=null;
-function startTour(){if(mode==='trans')return;tour={i:0,pause:0,look:null,ph:0};pos.set(PATH[0][0],EYE,PATH[0][1]);yaw=0;pitch=-.03;mode='tour';if(document.pointerLockElement)document.exitPointerLock();$('bTour').textContent='Stop tour';$('bView').textContent='Dollhouse view';$('hint').style.opacity=0;hideCard();if(!userMuted)music(true)}
-function stopTour(){tour=null;if(mode==='tour')mode='walk';$('bTour').textContent='Start tour';hideCard()}
+function startTour(){if(mode==='trans')return;tour={i:0,pause:0,look:null,ph:0};pos.set(PATH[0][0],EYE,PATH[0][1]);yaw=0;pitch=-.03;mode='tour';if(document.pointerLockElement)document.exitPointerLock();$('bTour').textContent='Detener recorrido';$('bView').textContent='Vista maqueta';$('hint').style.opacity=0;hideCard();if(!userMuted)music(true)}
+function stopTour(){tour=null;if(mode==='tour')mode='walk';$('bTour').textContent='Iniciar recorrido';hideCard()}
 function angTo(a,b,k){let d=b-a;d=Math.atan2(Math.sin(d),Math.cos(d));return a+d*k}
 function tourStep(dt){const tr=tour;if(tr.pause>0){tr.pause-=dt;tr.ph+=dt;if(tr.look){const ty=Math.atan2(-(tr.look[0]-pos.x),-(tr.look[1]-pos.z))+Math.sin(tr.ph*.45)*.32;yaw=angTo(yaw,ty,1-Math.exp(-dt*1.6))}if(tr.pause<=0)hideCard();return}
- const n=PATH[tr.i+1];if(!n){tour=null;$('bTour').textContent='Start tour';toDoll(4.2,()=>showCard('The whole home',Math.round(TOTAL*SQ).toLocaleString('en-US')+' sq ft across the rooms toured','Bedrooms, living spaces and the quincho wrap a private patio. Drag to orbit, scroll to zoom.'));return}
+ const n=PATH[tr.i+1];if(!n){tour=null;$('bTour').textContent='Iniciar recorrido';toDoll(4.2,()=>showCard('La casa completa',TOTAL.toFixed(0)+' m² en los ambientes recorridos','Dormitorios, estar y quincho rodean un patio privado. Arrastrá para girar y usá la rueda o dos dedos para acercar.'));return}
  const dx=n[0]-pos.x,dz=n[1]-pos.z,d=Math.hypot(dx,dz),sp=1.15*dt;if(d>.02)yaw=angTo(yaw,Math.atan2(-dx,-dz),1-Math.exp(-dt*2.6));pitch=lerp(pitch,-.04,dt*2);
- if(d<=sp){pos.x=n[0];pos.z=n[1];tr.i++;if(n[2]!==undefined){const r=ROOMS[n[2]];showCard(r[0],Math.round(r[1]*SQ)+' sq ft · '+r[1].toFixed(1)+' m²',r[2]);tr.pause=5.2;tr.look=n[3];tr.ph=0}}else{pos.x+=dx/d*sp;pos.z+=dz/d*sp}}
+ if(d<=sp){pos.x=n[0];pos.z=n[1];tr.i++;if(n[2]!==undefined){const r=ROOMS[n[2]];showCard(r[0],r[1].toFixed(1).replace('.',',')+' m²',r[2]);tr.pause=5.2;tr.look=n[3];tr.ph=0}}else{pos.x+=dx/d*sp;pos.z+=dz/d*sp}}
 
 /* ---------- input ---------- */
 const keys={};addEventListener('keydown',e=>{keys[e.code]=true;if(mode==='walk'&&['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code)&&document.activeElement===canvas)e.preventDefault()});addEventListener('keyup',e=>keys[e.code]=false);addEventListener('blur',()=>{for(const k in keys)keys[k]=false});
@@ -636,7 +636,7 @@ function sched(){if(!AC||AC.state!=='running')return;while(nextT<AC.currentTime+
  const r=rng(chordI*977);for(let i=0;i<4;i++){const tt=t+.6+i*1.7+r()*.8,f=PENT[r()*PENT.length|0];const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0,tt);g.gain.linearRampToValueAtTime(.05,tt+.02);g.gain.exponentialRampToValueAtTime(.0005,tt+2.4);o.connect(g);g.connect(bus);o.start(tt);o.stop(tt+2.5)}nextT=t+7}}
 function music(on){musicOn=on;if(on){if(!AC){const C=window.AudioContext||window.webkitAudioContext;if(!C)return;AC=new C();master=AC.createGain();master.gain.value=0;bus=AC.createGain();const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1700;const dl=AC.createDelay(1);dl.delayTime.value=.43;const fb=AC.createGain();fb.gain.value=.4;bus.connect(lp);lp.connect(master);lp.connect(dl);dl.connect(fb);fb.connect(dl);dl.connect(master);master.connect(AC.destination);setInterval(sched,500)}
   AC.resume().then(sched).catch(()=>{});master.gain.setTargetAtTime(.75,AC.currentTime,.6)}else if(AC)master.gain.setTargetAtTime(0,AC.currentTime,.25);
- $('bMusic').textContent=on?'Music on':'Music off';$('bMusic').setAttribute('aria-pressed',on)}
+ $('bMusic').textContent=on?'Música: sí':'Música: no';$('bMusic').setAttribute('aria-pressed',on)}
 
 /* ---------- UI ---------- */
 $('bTour').onclick=()=>tour?stopTour():(mode==='doll'?(pos.set(PATH[0][0],EYE,PATH[0][1]),startTour()):startTour());
@@ -645,9 +645,9 @@ $('bMusic').onclick=()=>{userMuted=musicOn;music(!musicOn)};
 $('wStart').onclick=()=>{userMuted=false;music(true);leaveIntro(()=>startTour())};
 $('wFree').onclick=()=>leaveIntro(hintOn);
 $('bContact').onclick=$('wContact').onclick=()=>{$('contact').hidden=!$('contact').hidden};$('ctClose').onclick=()=>$('contact').hidden=true;
-$('ctCopy').onclick=()=>{const b=$('ctCopy'),ok=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy number',1800)},sel=()=>{const r=document.createRange();r.selectNodeContents($('ctPhone'));const g=getSelection();g.removeAllRanges();g.addRange(r);b.textContent='Number selected'};try{navigator.clipboard.writeText(INFO.phone).then(ok,sel)}catch(_){sel()}};
+$('ctCopy').onclick=()=>{const b=$('ctCopy'),ok=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar número',1800)},sel=()=>{const r=document.createRange();r.selectNodeContents($('ctPhone'));const g=getSelection();g.removeAllRanges();g.addRange(r);b.textContent='Número seleccionado'};try{navigator.clipboard.writeText(INFO.phone).then(ok,sel)}catch(_){sel()}};
 if(LEVELS.length>1){const el=$('levels');el.hidden=false;LEVELS.forEach((L,i)=>{const b=document.createElement('button');b.textContent=L.name;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{LEVELS.forEach((q,j)=>{if(q.group)q.group.visible=j<=i;el.children[j].setAttribute('aria-pressed',j===i)});pos.y=EYE+(L.y||0);shadowDirty=true};el.appendChild(b)})}
-$('bMore').onclick=()=>{const d=document.querySelector('#dock .in'),o=d.classList.toggle('open');$('bMore').setAttribute('aria-expanded',o);$('bMore').textContent=o?'Hide options':'Options';resize()};
+$('bMore').onclick=()=>{const d=document.querySelector('#dock .in'),o=d.classList.toggle('open');$('bMore').setAttribute('aria-expanded',o);$('bMore').textContent=o?'Ocultar opciones':'Opciones';resize()};
 $('tod').oninput=e=>{hourT=+e.target.value};
 const snap=$('snap');
 document.querySelectorAll('[data-style]').forEach(b=>b.onclick=()=>{const k=b.dataset.style;if(k===styleKey)return;renderFrame();try{snap.src=canvas.toDataURL('image/jpeg',.9);snap.style.transition='none';snap.style.opacity=1}catch(_){}
@@ -656,7 +656,7 @@ function resize(){const w=canvas.clientWidth||innerWidth,h=canvas.clientHeight||
 addEventListener('resize',resize);
 
 /* ---------- loop ---------- */
-applyStyle('modern');applyTime(hour);resize();
+applyStyle('scandi');applyTime(hour);resize();
 let last=performance.now(),roofOn=true;
 let TS=1,fBad=0,fN=0,fS=0,fL=performance.now(),qual=2;function frame(now){const dt=Math.min(.05,(now-last)/1000)*TS;last=now;
  if(Math.abs(hourT-hour)>.0005){hour=Math.abs(hourT-hour)<.004?hourT:lerp(hour,hourT,1-Math.exp(-dt*7));applyTime(hour)}

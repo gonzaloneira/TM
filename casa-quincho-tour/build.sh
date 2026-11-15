@@ -1,7 +1,7 @@
 #!/bin/sh
 # Wraps src/page.html into a standalone index.html
 cd "$(dirname "$0")"
-{ printf '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+{ printf '<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
   sed -n '1,/^<\/style>/p' src/page.html
   printf '</head>\n<body>\n'
   sed '1,/^<\/style>/d' src/page.html
