@@ -623,8 +623,11 @@ const tmpM=new T.Matrix4(),UP=new T.Vector3(0,1,0),qA=new T.Quaternion(),qB=new 
 let trans=null,introT=0;const touchy=matchMedia('(pointer:coarse)').matches||'ontouchstart' in window;
 if(touchy)$('hint').innerHTML='<b>Arrastrá</b> para mirar. Usá el <b>círculo</b> para caminar.';
 function leaveIntro(after){document.body.classList.remove('intro');$('welcome').hidden=true;$('contact').hidden=true;resize();pos.set(PATH[0][0],EYE,PATH[0][1]);yaw=0;pitch=-.03;pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur:3,to:'walk',fromIntro:true,after};mode='trans'}
-function hintOn(){const h=$('hint');h.style.opacity=1;setTimeout(()=>h.style.opacity=0,8000)}
-function toDoll(dur=2.6,after){pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur,to:'doll',after};mode='trans';if(document.pointerLockElement)document.exitPointerLock();$('bView').textContent='Caminar adentro';$('hint').style.opacity=0}
+const HINT_WALK=touchy?'<b>Arrastrá</b> para mirar. Usá el <b>círculo</b> para caminar.':$('hint').innerHTML,HINT_DOLL=touchy?'<b>Un dedo</b> gira la maqueta. El <b>círculo</b> o <b>dos dedos</b> la desplazan. <b>Pellizcá</b> para acercar.':'<b>Arrastrá</b> para girar. <b>W A S D</b>, las flechas o <b>clic derecho + arrastrar</b> para desplazarte. <b>Rueda</b> para acercar.';let hintT=0;
+function hintOn(html){const h=$('hint');h.innerHTML=html||HINT_WALK;h.style.opacity=1;clearTimeout(hintT);hintT=setTimeout(()=>h.style.opacity=0,9000)}
+function dollPan(fw,rt){const fx=-Math.sin(doll.az),fz=-Math.cos(doll.az);doll.tgt.x=clamp(doll.tgt.x+fx*fw+Math.cos(doll.az)*rt,-4,18);doll.tgt.z=clamp(doll.tgt.z+fz*fw-Math.sin(doll.az)*rt,-9,27)}
+function dollStep(dt){let f=0,s=0;if(keys.KeyW||keys.ArrowUp)f+=1;if(keys.KeyS||keys.ArrowDown)f-=1;if(keys.KeyD||keys.ArrowRight)s+=1;if(keys.KeyA||keys.ArrowLeft)s-=1;f-=joy.y;s+=joy.x;if(f||s){const v=doll.dist*.55*dt;dollPan(f*v,s*v)}}
+function toDoll(dur=2.6,after){pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur,to:'doll',after:()=>{hintOn(HINT_DOLL);if(after)after()}};mode='trans';if(document.pointerLockElement)document.exitPointerLock();$('bView').textContent='Caminar adentro';$('hint').style.opacity=0}
 function toWalk(dur=2.2){pA.copy(camera.position);qA.copy(camera.quaternion);trans={t:0,dur,to:'walk'};mode='trans';$('bView').textContent='Vista maqueta';hideCard()}
 const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 /* tour */
@@ -633,23 +636,24 @@ function startTour(){if(mode==='trans')return;tour={i:0,pause:0,look:null,ph:0};
 function stopTour(){tour=null;if(mode==='tour')mode='walk';$('bTour').textContent='Iniciar recorrido';hideCard()}
 function angTo(a,b,k){let d=b-a;d=Math.atan2(Math.sin(d),Math.cos(d));return a+d*k}
 function tourStep(dt){const tr=tour;if(tr.pause>0){tr.pause-=dt;tr.ph+=dt;if(tr.look){const ty=Math.atan2(-(tr.look[0]-pos.x),-(tr.look[1]-pos.z))+Math.sin(tr.ph*.45)*.32;yaw=angTo(yaw,ty,1-Math.exp(-dt*1.6))}if(tr.pause<=0)hideCard();return}
- const n=PATH[tr.i+1];if(!n){tour=null;$('bTour').textContent='Iniciar recorrido';toDoll(4.2,()=>showCard('La casa completa',TOTAL.toFixed(0)+' m² en los ambientes recorridos','Dormitorios, estar y quincho rodean un patio privado. Arrastrá para girar y usá la rueda o dos dedos para acercar.'));return}
+ const n=PATH[tr.i+1];if(!n){tour=null;$('bTour').textContent='Iniciar recorrido';toDoll(4.2,()=>showCard('La casa completa',TOTAL.toFixed(0)+' m² en los ambientes recorridos','Dormitorios, estar y quincho rodean un patio privado. Podés girarla, desplazarte y acercarte.'));return}
  const dx=n[0]-pos.x,dz=n[1]-pos.z,d=Math.hypot(dx,dz),sp=1.15*dt;if(d>.02)yaw=angTo(yaw,Math.atan2(-dx,-dz),1-Math.exp(-dt*2.6));pitch=lerp(pitch,-.04,dt*2);
  strode(Math.min(d,sp),dt,.02);if(d<=sp){pos.x=n[0];pos.z=n[1];tr.i++;if(n[2]!==undefined){const r=ROOMS[n[2]];showCard(r[0],r[1].toFixed(1).replace('.',',')+' m²',r[2]);tr.pause=5.2;tr.look=n[3];tr.ph=0}}else{pos.x+=dx/d*sp;pos.z+=dz/d*sp}}
 
 /* ---------- input ---------- */
 const keys={};addEventListener('keydown',e=>{keys[e.code]=true;if(mode==='walk'&&['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code)&&document.activeElement===canvas)e.preventDefault()});addEventListener('keyup',e=>keys[e.code]=false);addEventListener('blur',()=>{for(const k in keys)keys[k]=false});
-let drag=null,pinch=0;const pts=new Map(),joy={x:0,y:0,id:null},joyEl=$('joy'),knob=$('knob');
+let drag=null,pinch=0,pmX=0,pmY=0;const pts=new Map(),joy={x:0,y:0,id:null},joyEl=$('joy'),knob=$('knob');
 function joySet(e){const r=joyEl.getBoundingClientRect(),m=r.width/2-20;let dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);const l=Math.hypot(dx,dy);if(l>m){dx*=m/l;dy*=m/l}joy.x=dx/m;joy.y=dy/m;knob.style.transform='translate('+dx+'px,'+dy+'px)'}
 function joyEnd(e){if(e.pointerId!==joy.id)return;joy.id=null;joy.x=joy.y=0;knob.style.transform=''}
 joyEl.addEventListener('pointerdown',e=>{joy.id=e.pointerId;try{joyEl.setPointerCapture(e.pointerId)}catch(_){}joySet(e);e.preventDefault()});joyEl.addEventListener('pointermove',e=>{if(e.pointerId===joy.id)joySet(e)});joyEl.addEventListener('pointerup',joyEnd);joyEl.addEventListener('pointercancel',joyEnd);
 canvas.addEventListener('pointerdown',e=>{canvas.focus();pts.set(e.pointerId,{x:e.clientX,y:e.clientY});drag={x:e.clientX,y:e.clientY,moved:0};try{canvas.setPointerCapture(e.pointerId)}catch(_){}});
 canvas.addEventListener('pointerup',e=>{pts.delete(e.pointerId);pinch=0;if(drag&&drag.moved<5&&mode==='walk'&&e.pointerType==='mouse'&&canvas.requestPointerLock){try{const p=canvas.requestPointerLock();if(p&&p.catch)p.catch(()=>{})}catch(_){}}drag=null});
 canvas.addEventListener('pointercancel',e=>{pts.delete(e.pointerId);pinch=0;drag=null});
-canvas.addEventListener('pointermove',e=>{if(pts.has(e.pointerId)){const q=pts.get(e.pointerId);q.x=e.clientX;q.y=e.clientY}if(pts.size===2){if(mode==='doll'){const[a,b]=[...pts.values()],d=Math.hypot(a.x-b.x,a.y-b.y);if(pinch)doll.dist=clamp(doll.dist*pinch/d,10,60);pinch=d}if(drag){drag.x=e.clientX;drag.y=e.clientY}return}
+canvas.addEventListener('pointermove',e=>{if(pts.has(e.pointerId)){const q=pts.get(e.pointerId);q.x=e.clientX;q.y=e.clientY}if(pts.size===2){if(mode==='doll'){const[a,b]=[...pts.values()],d=Math.hypot(a.x-b.x,a.y-b.y),mx=(a.x+b.x)/2,my=(a.y+b.y)/2;if(pinch){doll.dist=clamp(doll.dist*pinch/d,6,60);const k=doll.dist*.0018;dollPan((my-pmY)*k,-(mx-pmX)*k)}pinch=d;pmX=mx;pmY=my}if(drag){drag.x=e.clientX;drag.y=e.clientY}return}
  const locked=document.pointerLockElement===canvas;let dx,dy;if(locked){dx=e.movementX;dy=e.movementY}else if(drag){dx=e.clientX-drag.x;dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;drag.moved+=Math.abs(dx)+Math.abs(dy)}else return;
- if(mode==='walk'){const k=locked?.0022:-.004;yaw-=dx*k;pitch=clamp(pitch-dy*k,-1.3,1.3)}else if(mode==='doll'){doll.az-=dx*.006;doll.pol=clamp(doll.pol-dy*.005,.05,1.35)}});
-canvas.addEventListener('wheel',e=>{if(mode==='doll'){doll.dist=clamp(doll.dist*(1+Math.sign(e.deltaY)*.08),10,60);e.preventDefault()}},{passive:false});
+ if(mode==='walk'){const k=locked?.0022:-.004;yaw-=dx*k;pitch=clamp(pitch-dy*k,-1.3,1.3)}else if(mode==='doll'){if((e.buttons&2)||e.shiftKey){const k=doll.dist*.0018;dollPan(dy*k,-dx*k)}else{doll.az-=dx*.006;doll.pol=clamp(doll.pol-dy*.005,.05,1.35)}}});
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+canvas.addEventListener('wheel',e=>{if(mode==='doll'){doll.dist=clamp(doll.dist*(1+Math.sign(e.deltaY)*.08),6,60);e.preventDefault()}},{passive:false});
 document.addEventListener('pointerlockchange',()=>{if(document.pointerLockElement===canvas)$('hint').style.opacity=0});
 function collide(p){const R=.2;for(let it=0;it<2;it++)for(const c of cols){const nx=clamp(p.x,c[0],c[2]),nz=clamp(p.z,c[1],c[3]),dx=p.x-nx,dz=p.z-nz,d2=dx*dx+dz*dz;if(d2<R*R){if(d2>1e-8){const d=Math.sqrt(d2);p.x=nx+dx/d*R;p.z=nz+dz/d*R}else{const l=p.x-c[0],r=c[2]-p.x,t=p.z-c[1],b=c[3]-p.z,m=Math.min(l,r,t,b);if(m===l)p.x=c[0]-R;else if(m===r)p.x=c[2]+R;else if(m===t)p.z=c[1]-R;else p.z=c[3]+R}}}p.x=clamp(p.x,-6,20);p.z=clamp(p.z,-7.5,27)}
 const vel={x:0,z:0},calm=matchMedia('(prefers-reduced-motion: reduce)').matches;let stepPh=0,bobK=0,bobY=0;
@@ -680,7 +684,7 @@ $('bTour').onclick=()=>tour?stopTour():(mode==='doll'?(pos.set(PATH[0][0],EYE,PA
 $('bView').onclick=()=>{if(mode==='trans')return;if(tour)stopTour();mode==='doll'?toWalk():toDoll()};
 $('bMusic').onclick=()=>{userMuted=musicOn;music(!musicOn)};
 $('wStart').onclick=()=>{userMuted=false;music(true);leaveIntro(()=>startTour())};
-$('wFree').onclick=()=>leaveIntro(hintOn);
+$('wFree').onclick=()=>leaveIntro(()=>hintOn());
 $('bContact').onclick=$('wContact').onclick=()=>{$('contact').hidden=!$('contact').hidden};$('ctClose').onclick=()=>$('contact').hidden=true;
 $('ctCopy').onclick=()=>{const b=$('ctCopy'),ok=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar número',1800)},sel=()=>{const r=document.createRange();r.selectNodeContents($('ctPhone'));const g=getSelection();g.removeAllRanges();g.addRange(r);b.textContent='Número seleccionado'};try{navigator.clipboard.writeText(INFO.phone).then(ok,sel)}catch(_){sel()}};
 if(LEVELS.length>1){const el=$('levels');el.hidden=false;LEVELS.forEach((L,i)=>{const b=document.createElement('button');b.textContent=L.name;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{LEVELS.forEach((q,j)=>{if(q.group)q.group.visible=j<=i;el.children[j].setAttribute('aria-pressed',j===i)});pos.y=EYE+(L.y||0);shadowDirty=true};el.appendChild(b)})}
@@ -700,10 +704,10 @@ let TS=1,fBad=0,fN=0,fS=0,fL=performance.now(),qual=2;function frame(now){const 
  if(mode==='walk')walkStep(dt);else if(mode==='tour'&&tour)tourStep(dt);
  if(mode==='intro'){introT+=dt;const az=.45+.38*Math.sin(introT*.11),d=19;pB.set(7.5+Math.sin(az)*d,4.6,14+Math.cos(az)*d);camera.position.copy(pB);pA.set(7.5,1.8,13);tmpM.lookAt(pB,pA,UP);camera.quaternion.setFromRotationMatrix(tmpM)}
  else if(mode==='walk'||mode==='tour'){camera.position.set(pos.x,pos.y+bobY,pos.z);eul.set(pitch,yaw,0);camera.quaternion.setFromEuler(eul)}
- else if(mode==='doll'){dollPose(pB,qB);camera.position.copy(pB);camera.quaternion.copy(qB)}
+ else if(mode==='doll'){dollStep(dt);dollPose(pB,qB);camera.position.copy(pB);camera.quaternion.copy(qB)}
  else if(mode==='trans'){trans.t+=dt/trans.dur;const k=ease(Math.min(1,trans.t));if(trans.to==='doll')dollPose(pB,qB);else{pB.copy(pos);eul.set(pitch,yaw,0);qB.setFromEuler(eul)}
   camera.position.lerpVectors(pA,pB,k);camera.position.y+=Math.sin(k*PI)*(trans.to==='doll'?2:0);camera.quaternion.slerpQuaternions(qA,qB,k);if(trans.t>=1){mode=trans.to;const a=trans.after;trans=null;if(a)a()}}
- const ro=camera.position.y<2.56||mode==='intro'||!!(trans&&trans.fromIntro);const jv=!(touchy&&mode==='walk');if(joyEl.hidden!==jv)joyEl.hidden=jv;if(ro!==roofOn){roofOn=ro;roofG.visible=ro;shadowDirty=true}
+ const ro=camera.position.y<2.56||mode==='intro'||!!(trans&&trans.fromIntro);const jv=!(touchy&&(mode==='walk'||mode==='doll'));if(joyEl.hidden!==jv)joyEl.hidden=jv;if(ro!==roofOn){roofOn=ro;roofG.visible=ro;shadowDirty=true}
  fireL.intensity=(fireL.userData.b||0)*(.8+.2*Math.sin(now*.013)+.1*Math.sin(now*.031));
  skyU.tm.value=now*.001;updateEnv(now);doorStep(dt);probeStep(now);ambStep();if(shadowDirty){renderer.shadowMap.needsUpdate=true;shadowDirty=false}
  renderFrame();
@@ -712,6 +716,6 @@ let TS=1,fBad=0,fN=0,fS=0,fL=performance.now(),qual=2;function frame(now){const 
  requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 $('load').style.opacity=0;setTimeout(()=>$('load').hidden=true,700);
-window.__tour={cam(x,z,y,p){document.body.classList.remove('intro');$('welcome').hidden=true;pos.set(x,EYE,z);yaw=y||0;pitch=p||0;mode='walk'},time(h){hourT=hour=h;applyTime(h);$('tod').value=h},style:applyStyle,doll(az,pol,dist){if(az!==undefined){doll.az=az;doll.pol=pol;doll.dist=dist}mode='doll'},cols,PATH,startTour,get probes(){return prPending+prQ.length},set quality(v){qual=v;aoOn=v>0},scene,renderer,roofG,renderFrame,set speed(v){TS=v},get mode(){return mode}};
+window.__tour={cam(x,z,y,p){document.body.classList.remove('intro');$('welcome').hidden=true;pos.set(x,EYE,z);yaw=y||0;pitch=p||0;mode='walk'},time(h){hourT=hour=h;applyTime(h);$('tod').value=h},style:applyStyle,get dollTgt(){return[doll.tgt.x,doll.tgt.z]},doll(az,pol,dist){if(az!==undefined){doll.az=az;doll.pol=pol;doll.dist=dist}mode='doll'},cols,PATH,startTour,get probes(){return prPending+prQ.length},set quality(v){qual=v;aoOn=v>0},scene,renderer,roofG,renderFrame,set speed(v){TS=v},get mode(){return mode}};
 })();
 </script>
