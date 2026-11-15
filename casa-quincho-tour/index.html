@@ -124,7 +124,8 @@ const canvas=$('c');
 let renderer;
 try{renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});}
 catch(e){$('load').textContent='This browser could not start WebGL, so the 3D tour cannot run here.';return;}
-renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+const PHONE=matchMedia('(pointer:coarse)').matches,DPR=window.devicePixelRatio||1;
+renderer.setPixelRatio(Math.min(DPR,PHONE?2:1.5));
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
 renderer.toneMapping=T.ACESFilmicToneMapping;
 const scene=new T.Scene();
@@ -289,7 +290,7 @@ run('x',.2,4.31,15.94,16.04,[{a:1.5,b:2.31,k:'open',h:2.08}]);doorLeaf('x',{a:1.
 bx(1.41,0,16.04,1.5,H,16.65,M.wall);bx(2.31,0,16.04,2.41,H,16.65,M.wall);
 run('z',16.04,17.72,4.11,4.31);run('z',17.72,19.96,4.11,4.31,[],{ext:0});
 run('x',.2,4.11,19.75,19.96,[WX(.3,1.1,.06,2.45),WX(3.31,4.11,.06,2.45)],{ext:4});                          // bedroom 2 street windows
-run('z',11.53,13.74,4.21,4.36);                                                                  // TV wall
+run('z',11.53,13.74,4.21,4.36,[],{ext:1,nobase:1});                                                                  // TV wall
 run('x',4.31,5.52,17.67,17.77,[DR(4.36,5.2,'a',-1,{m:M.slat,h:2.5}),WX(5.2,5.52,0,2.5)],{ext:4,em:M.slat});    // front door + side panel
 run('x',5.52,6.22,17.65,17.85,[],{ext:4});run('z',15.94,17.65,6.02,6.22,[],{ext:0});
 run('x',6.22,8.34,15.94,16.04,[WX(6.22,6.82,.45,2.4),{a:6.82,b:7.72,k:'open',h:0,nocase:1},WX(7.72,8.34,.45,2.4)],{ext:4});run('x',8.34,14.05,15.94,16.04,[{a:9.94,b:10.94,k:'open',h:2.1}]);
@@ -318,11 +319,11 @@ col(-.9,-8,-.1,23.3);col(14.35,-8,15.15,17.8);col(-.9,-8.8,15.15,-8);col(14.05,1
 /* ---------- ceilings / roof (hidden in dollhouse) ---------- */
 const RO={p:roofG};
 const RM=[M.conc2,M.conc2,M.conc2,M.ceiling,M.conc2,M.conc2];
-[[0,3.74,4.33,9.22],[0,9.22,2.31,16.04],[2.31,9.22,3.95,10.23],[2.31,15.05,3.95,16.04],[3.95,9.22,14.05,16.04],[4.31,8.85,9.74,9.22],[-.02,16.04,4.31,20.37],[4.31,16.04,6.22,17.85],[4.31,17.85,9.94,20.37],[8.34,16.04,14.05,17.85],[9.6,0,14.05,9.22]].forEach(r=>bx(r[0],H,r[1],r[2],H+.3,r[3],RM,RO));
+[[0,3.74,4.33,9.22],[0,9.22,2.31,16.04],[2.31,9.22,4.21,10.23],[2.31,15.05,4.21,16.04],[3.95,10.23,4.21,11.05],[3.95,14.25,4.21,15.05],[4.21,9.22,14.05,16.04],[4.31,8.85,9.74,9.22],[-.02,16.04,4.31,20.37],[4.31,16.04,6.22,17.85],[4.31,17.85,9.94,20.37],[8.34,16.04,14.05,17.85],[9.6,0,14.05,9.22]].forEach(r=>bx(r[0],H,r[1],r[2],H+.3,r[3],RM,RO));
 // taller central volume, wood fin and flue (as in the facade renders)
-bx(2.21,H+.3,9.22,14.05,3.7,9.37,M.ext,RO);bx(2.21,H+.3,15.89,14.05,3.7,16.04,M.ext,RO);bx(13.9,H+.3,9.37,14.05,3.7,15.89,M.ext,RO);bx(2.21,H+.3,9.37,2.31,3.7,10.13,M.ext,RO);bx(2.21,H+.3,15.15,2.31,3.7,15.89,M.ext,RO);bx(2.21,3.7,9.22,14.05,3.8,16.04,M.ext,RO);bx(4.36,H+.3,17.3,5.3,3.8,17.62,M.slat,RO);cyl(7.27,H+.3,16.12,.07,1.6,M.black,RO);
+bx(2.21,H+.3,9.22,14.05,3.7,9.37,M.ext,RO);bx(2.21,H+.3,15.89,14.05,3.7,16.04,M.ext,RO);bx(13.9,H+.3,9.37,14.05,3.7,15.89,M.ext,RO);bx(2.21,H+.3,9.37,2.31,3.7,10.13,M.ext,RO);bx(2.21,H+.3,15.15,2.31,3.7,15.89,M.ext,RO);bx(2.21,3.7,9.22,14.05,3.8,11.05,M.ext,RO);bx(2.21,3.7,14.25,14.05,3.8,16.04,M.ext,RO);bx(2.21,3.7,11.05,3.15,3.8,14.25,M.ext,RO);bx(4.21,3.7,11.05,14.05,3.8,14.25,M.ext,RO);bx(3.15,H,11.05,3.23,3.8,14.25,M.ext,RO);bx(4.13,H,11.05,4.21,3.8,14.25,M.ext,RO);bx(3.23,H,11.05,4.13,3.8,11.13,M.ext,RO);bx(3.23,H,14.17,4.13,3.8,14.25,M.ext,RO);bx(4.36,H+.3,17.3,5.3,3.8,17.62,M.slat,RO);cyl(7.27,H+.3,16.12,.07,1.6,M.black,RO);
 // stair shaft to the upper floor
-bx(2.21,H+.3,10.13,2.31,3.7,15.15,M.wall,{p:roofG,ext:1});bx(3.95,H,10.13,4.05,3.7,15.15,M.wall,RO);bx(2.31,H,10.13,3.95,3.7,10.23,M.wall,RO);bx(2.31,H,15.05,3.95,3.7,15.15,M.wall,RO);
+bx(2.21,H+.3,10.13,2.31,3.7,15.15,M.wall,{p:roofG,ext:1});bx(3.95,H,10.13,4.05,3.7,11.05,M.wall,RO);bx(3.95,H,14.25,4.05,3.7,15.15,M.wall,RO);bx(2.31,H,10.13,3.95,3.7,10.23,M.wall,RO);bx(2.31,H,15.05,3.95,3.7,15.15,M.wall,RO);
 // carport roof + entry pergola
 bx(8.34,2.3,17.85,14.3,H,23.4,RM,RO);
 [19.9,23.2].forEach(z=>{bx(8.42,0,z-.08,8.58,2.3,z+.08,M.dark);col(8.42,z-.08,8.58,z+.08)});
@@ -437,8 +438,12 @@ rug(1.62,9.7,2.2,15.2,M.rug2);art('x',1.5,10.3,1.55,.6,.8,3,1);art('x',1.5,11.5,
  bx(2.31,0,14.3,2.36,2.6,14.35,M.metal);
  col(2.31,10.23,3.15,14.25);col(3.15,10.23,3.9,11.05);
  // planter + closet beside the stair
- bx(3.15,0,11.05,4.21,.45,13.3,M.wall);bx(3.2,.4,11.1,4.16,.46,13.25,M.soil,{cast:false});plant(3.68,11.55,1.3,root,.44,false);plant(3.6,12.25,1.0,root,.44,false);plant(3.72,12.85,1.2,root,.44,false);
- bx(3.15,0,13.3,4.31,H,14.25,M.wall);bx(3.3,0,14.25,4.1,2.08,14.265,M.doorInt);cyl(4.0,1,14.27,.012,.12,M.metal);col(3.15,11.05,4.31,14.25)}
+ // glazed internal patio beside the stair (open to the sky); only the TV wall is solid
+ bx(3.15,.03,11.05,4.21,.05,14.25,M.pave,{cast:false});bx(3.22,.05,11.12,4.14,.1,12.75,M.soil,{cast:false});
+ pane('z',11.05,14.25,3.17,0,H,{mul:3});pane('x',3.15,4.31,11.07,0,H,{mul:1});pane('x',3.15,3.3,14.23,0,H);pane('x',3.3,4.06,14.23,0,2.1);pane('x',3.3,4.06,14.23,2.1,H);pane('x',4.06,4.31,14.23,0,H);cyl(3.98,.95,14.27,.012,.2,M.metal);
+ pane('z',11.07,11.53,4.29,0,H);pane('z',13.74,14.23,4.29,0,H);
+ plant(3.5,11.5,1.5,root,.1,false);plant(3.95,11.48,1.2,root,.1,false);plant(3.5,12.0,1.3,root,.1,false);plant(3.52,12.5,1.1,root,.1,false);cyl(3.8,.05,13.4,.16,.34,M.pot,{rt:.2});plant(3.8,13.4,.9,root,.38,false);
+ col(3.15,11.05,4.31,14.25)}
 
 /* ---------- PRIMARY BEDROOM ---------- */
 rug(1.25,5.55,3.7,8.15,M.rug);
@@ -534,7 +539,7 @@ const cubeRT=new T.WebGLCubeRenderTarget(256,{type:T.HalfFloatType}),cubeCam=new
 const LOCAL=['floorMain','floorBed','floorWet','floorQ','counter','cabinet','cabinet2','metal','chrome','steel','black','mirror','ceramic','wood','woodDark'];let locRT=null,locDirty=true,locAt=0;
 function updateLocal(now){if(!locDirty||envDirty||now-locAt<350)return;locDirty=false;const rv=roofG.visible;roofG.visible=true;renderer.shadowMap.needsUpdate=true;cubeCam.update(renderer,scene);roofG.visible=rv;shadowDirty=true;const rt=pmrem.fromCubemap(cubeRT.texture);for(const k of LOCAL){const m=M[k];if(!m.envMap)m.needsUpdate=true;m.envMap=rt.texture;m.envMapIntensity=.62}if(locRT)locRT.dispose();locRT=rt}
 // post: ambient occlusion from depth, vignette, tone mapping
-let post=renderer.capabilities.isWebGL2,aoOn=true,rtMain=null,rtAO=null;const postScene=new T.Scene(),postCam=new T.OrthographicCamera(-1,1,1,-1,0,1),fsq=new T.Mesh(new T.PlaneGeometry(2,2));fsq.frustumCulled=false;postScene.add(fsq);
+let post=renderer.capabilities.isWebGL2&&!PHONE,aoOn=true,rtMain=null,rtAO=null;const postScene=new T.Scene(),postCam=new T.OrthographicCamera(-1,1,1,-1,0,1),fsq=new T.Mesh(new T.PlaneGeometry(2,2));fsq.frustumCulled=false;postScene.add(fsq);
 const PV='varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}';
 const aoMat=new T.ShaderMaterial({depthTest:false,depthWrite:false,uniforms:{tD:{value:null},pInv:{value:new T.Matrix4()},proj:{value:new T.Matrix4()}},vertexShader:PV,fragmentShader:`uniform sampler2D tD;uniform mat4 pInv,proj;varying vec2 vUv;
 vec3 vp(vec2 u){float d=texture2D(tD,u).x;vec4 v=pInv*vec4(u*2.-1.,d*2.-1.,1.);return v.xyz/v.w;}
@@ -555,6 +560,7 @@ function renderFrame(cam){cam=cam||camera;if(!post){renderer.setRenderTarget(nul
  renderer.setRenderTarget(rtMain);renderer.render(scene,cam);
  if(aoOn){aoMat.uniforms.tD.value=rtMain.depthTexture;aoMat.uniforms.pInv.value.copy(cam.projectionMatrixInverse);aoMat.uniforms.proj.value.copy(cam.projectionMatrix);fsq.material=aoMat;renderer.setRenderTarget(rtAO);renderer.render(postScene,postCam)}
  outMat.uniforms.tC.value=rtMain.texture;outMat.uniforms.tA.value=rtAO.texture;outMat.uniforms.aoK.value=aoOn?1:0;fsq.material=outMat;renderer.setRenderTarget(null);renderer.render(postScene,postCam)}
+if(!post)M.glass.opacity=.13;
 /* ---------- time of day ---------- */
 const KF=[[6,'#ff9a5a',0,'#1b2445','#c9785a',.22,.1,1.05],[6.8,'#ffb27a',1.8,'#5f86c9','#ffc79e',.55,.24,1],[9,'#fff0dc',3.4,'#3f86e0','#cfe4fb',.95,.34,1],[13,'#ffffff',3.8,'#3a80e0','#d6e8fb',1.05,.36,1],[17,'#ffe2b8',3.4,'#4a84d6','#eadfca',.95,.34,1],[18.7,'#ff9f4d',3.0,'#5a70b8','#ffae6a',.7,.3,1.05],[19.5,'#ff6230',1.0,'#3a3f78','#f08060',.36,.2,1.08],[20.3,'#8fa8e0',0,'#0c1230','#3a3050',.1,.07,1.12],[21,'#8fa8e0',.3,'#05070f','#0e1424',.07,.05,1.18],[23.01,'#8fa8e0',.3,'#05070f','#0e1424',.07,.05,1.18]].map(k=>[k[0],new T.Color(k[1]),k[2],new T.Color(k[3]),new T.Color(k[4]),k[5],k[6],k[7]]);
 let hour=10.5,hourT=10.5,lampF=0,shadowDirty=true;const cA=new T.Color(),sunDir=new T.Vector3();
@@ -579,7 +585,7 @@ const ROOMS=[
  ['Laundry & pantry',2.80*1.60+1.30*1.60,'A service wing with its own door to the carport, so groceries skip the living room.'],
  ['Quincho',3.90*6.90,'A glass-walled grill room with a built-in parrilla, one sliding door from the kitchen.'],
  ['Quincho bath',2.40*1.40,'Guests at the grill never need to cross the house.'],
- ['Hall & stair',2.81*6.61,'An open-tread stair rises beside an indoor planter.'],
+ ['Hall & stair',2.81*6.61,'An open-tread stair rises beside a glazed internal patio that brings daylight into the middle of the house.'],
  ['Primary bedroom',3.90*4.05,'A window seat over the garden planter, two walls of wardrobe and its own bath.'],
  ['En-suite bath',1.20*2.52,'A walk-in shower, reached directly from the bedroom.'],
  ['Storage room',1.20*2.13,'A full walk-in store off the hall, with a window of its own.'],
@@ -659,7 +665,7 @@ addEventListener('resize',resize);
 /* ---------- loop ---------- */
 applyStyle('modern');applyTime(hour);resize();
 let last=performance.now(),roofOn=true;
-let TS=1,fN=0,fS=0,fL=performance.now(),qual=2;function frame(now){const dt=Math.min(.05,(now-last)/1000)*TS;last=now;
+let TS=1,fBad=0,fN=0,fS=0,fL=performance.now(),qual=2;function frame(now){const dt=Math.min(.05,(now-last)/1000)*TS;last=now;
  if(Math.abs(hourT-hour)>.0005){hour=Math.abs(hourT-hour)<.004?hourT:lerp(hour,hourT,1-Math.exp(-dt*7));applyTime(hour)}
  if(mode==='walk')walkStep(dt);else if(mode==='tour'&&tour)tourStep(dt);
  if(mode==='intro'){introT+=dt;const az=.45+.38*Math.sin(introT*.11),d=19;pB.set(7.5+Math.sin(az)*d,4.6,14+Math.cos(az)*d);camera.position.copy(pB);pA.set(7.5,1.8,13);tmpM.lookAt(pB,pA,UP);camera.quaternion.setFromRotationMatrix(tmpM)}
@@ -672,7 +678,7 @@ let TS=1,fN=0,fS=0,fL=performance.now(),qual=2;function frame(now){const dt=Math
  skyU.tm.value=now*.001;updateEnv(now);updateLocal(now);if(shadowDirty){renderer.shadowMap.needsUpdate=true;shadowDirty=false}
  renderFrame();
  // drop to a lighter mode if this device cannot keep up
- if(TS===1){fN++;fS+=now-fL;if(fN===70){const avg=fS/70;if(avg>42&&qual>0&&qual<3){qual--;if(qual===1){renderer.setPixelRatio(1);resize()}else{aoOn=false}}fN=0;fS=0}}fL=now;
+ if(TS===1&&mode!=='intro'&&mode!=='trans'&&now-fL<250){fN++;fS+=now-fL;if(fN===90){const bad=fS/90>45;fBad=bad?fBad+1:0;if(fBad>=2&&qual>0&&qual<3){qual--;fBad=0;if(post&&qual===1)aoOn=false;else{renderer.setPixelRatio(post?1:Math.min(DPR,qual===1?1.5:1.15));resize()}}fN=0;fS=0}}fL=now;
  requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 $('load').style.opacity=0;setTimeout(()=>$('load').hidden=true,700);
